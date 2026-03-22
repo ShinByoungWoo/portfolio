@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(mv portfolio-app/* .)",
+      "Bash(mv portfolio-app/.* .)"
+    ]
+  }
+}
