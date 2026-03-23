@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import GameCard from '../ui/GameCard'
 import GameModal from '../ui/GameModal'
 import { SectionTitle } from './About'
+import FadeIn from '../ui/FadeIn'
 import type { GameMeta } from '../../types'
 
 const GAMES: GameMeta[] = [
@@ -35,43 +38,73 @@ const GAMES: GameMeta[] = [
   },
 ]
 
+const container: Variants = {
+  hidden: {},
+  show:   { transition: { staggerChildren: 0.1 } },
+}
+const cardVariant: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
+
 export default function GameShowcase() {
   const [selectedGame, setSelectedGame] = useState<GameMeta | null>(null)
 
   return (
-    <section id="games" className="py-28 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="games" className="relative py-28 px-6 overflow-hidden">
+
+      {/* 배경 blob */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute rounded-full"
+          style={{ width: 440, height: 440, top: '-5%', left: '-5%',
+            background: 'radial-gradient(circle, rgba(110,231,183,0.22) 0%, transparent 70%)' }} />
+        <div className="absolute rounded-full"
+          style={{ width: 360, height: 360, bottom: '-5%', right: '10%',
+            background: 'radial-gradient(circle, rgba(196,181,253,0.2) 0%, transparent 70%)' }} />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-          <div>
+          <FadeIn>
             <SectionTitle label="02" title="Interactive Contents" />
             <p className="text-base text-text-muted mt-2 max-w-lg">
               현 회사에서 개발한 Phaser3 기반 인터랙티브 콘텐츠입니다.
               카드를 클릭하면 데모 영상을 확인할 수 있습니다.
             </p>
-          </div>
-          <span className="text-sm text-text-muted bg-white border border-border px-4 py-2 rounded-full shadow-sm">
-            {GAMES.length} contents
-          </span>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <span className="text-sm text-text-muted bg-white border border-border px-4 py-2 rounded-full shadow-sm">
+              {GAMES.length} contents
+            </span>
+          </FadeIn>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* 첫 번째 카드 — wide */}
-          <div className="lg:col-span-2">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          <motion.div variants={cardVariant} className="lg:col-span-2">
             <GameCard game={GAMES[0]} onPlay={setSelectedGame} size="wide" />
-          </div>
+          </motion.div>
+          <motion.div variants={cardVariant}>
+            <GameCard game={GAMES[1]} onPlay={setSelectedGame} />
+          </motion.div>
+          <motion.div variants={cardVariant}>
+            <GameCard game={GAMES[2]} onPlay={setSelectedGame} />
+          </motion.div>
 
-          <GameCard game={GAMES[1]} onPlay={setSelectedGame} />
-          <GameCard game={GAMES[2]} onPlay={setSelectedGame} />
-
-          {/* 기술 스택 인포 카드 */}
-          <div className="lg:col-span-2 bg-white rounded-3xl border border-border p-6 shadow-sm">
+          <motion.div
+            variants={cardVariant}
+            className="lg:col-span-2 bg-white/80 backdrop-blur-sm rounded-3xl border border-border p-6 shadow-sm"
+          >
             <p className="text-xs font-semibold tracking-widest text-text-muted uppercase mb-4">Built with</p>
             <div className="flex flex-wrap gap-3">
-              {['Phaser 3', 'TypeScript', 'Spine2D', 'Tilemap', 'Tween', 'PathFollower'].map(tech => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 bg-surface-alt border border-border rounded-full text-sm font-medium text-text"
-                >
+              {['Phaser 3', 'TypeScript', 'Spine', 'Tilemap', 'Tween', 'PathFollower'].map(tech => (
+                <span key={tech}
+                  className="px-4 py-2 bg-surface-alt border border-border rounded-full text-sm font-medium text-text">
                   {tech}
                 </span>
               ))}
@@ -80,8 +113,8 @@ export default function GameShowcase() {
               각 콘텐츠는 <code className="text-xs bg-surface-alt px-2 py-0.5 rounded-md border border-border">BaseScene</code> 상속 구조로 설계되어
               결과 데이터를 LMS 플랫폼으로 전달합니다.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {selectedGame && (

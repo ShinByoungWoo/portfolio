@@ -21,24 +21,37 @@ const CARD_ICONS: Record<string, string> = {
 
 export default function GameCard({ game, onPlay, size = 'normal' }: GameCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const cardRef  = useRef<HTMLDivElement>(null)
 
   const handleMouseEnter = () => videoRef.current?.play()
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = cardRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    const x = (e.clientX - r.left) / r.width  - 0.5
+    const y = (e.clientY - r.top)  / r.height - 0.5
+    el.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(4px)`
+  }
+
   const handleMouseLeave = () => {
     const v = videoRef.current
-    if (!v) return
-    v.pause()
-    v.currentTime = 0
+    if (v) { v.pause(); v.currentTime = 0 }
+    if (cardRef.current) cardRef.current.style.transform = ''
   }
 
   return (
     <div
+      ref={cardRef}
       className={`
         group relative rounded-3xl border border-border bg-white overflow-hidden
-        cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1
+        cursor-pointer shadow-sm hover:shadow-md
         ${size === 'wide' ? 'lg:col-span-2' : ''}
       `}
+      style={{ transition: 'transform 0.15s ease, box-shadow 0.15s ease' }}
       onClick={() => onPlay(game)}
       onMouseEnter={handleMouseEnter}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
       {/* 썸네일 / 비디오 프리뷰 */}
