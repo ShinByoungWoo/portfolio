@@ -1,164 +1,130 @@
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
+import { caseStudies, heroStats, profile, skillGroups } from '../../data/portfolio'
 
-const SKILLS = [
-  { category: 'Main Stack',    items: ['Vue 3', 'Nuxt 3', 'Pinia', 'TypeScript'] },
-  { category: 'Also Use',      items: ['React', 'Vite', 'Tailwind CSS', 'GSAP'] },
-  { category: 'Game / Canvas', items: ['Phaser3', 'Spine2D', 'Tilemap', 'Canvas API'] },
-  { category: 'Tools',         items: ['Git', 'Figma', 'Slack'] },
-]
-
-const EXPERIENCES = [
-  {
-    period: '2022.06 — 현재',
-    company: '로지브라더스',
-    role: 'Frontend Developer',
-    // TODO: 실제 업무 내용으로 교체
-    bullets: [
-      'Vue 3 / Nuxt 기반 LMS 플랫폼 기능 개발 및 유지보수',
-      'CMS·어드민 페이지 설계 및 구현',
-      '랜딩·마케팅 페이지 개발',
-      'Phaser3를 활용한 교육용 인터랙티브 콘텐츠 다수 제작',
-    ],
-  },
-]
-
-const STATS = [
-  { value: '3년+', label: '재직 기간' },
-  { value: '20+', label: '인터랙티브 콘텐츠' },
-  { value: 'Vue·React', label: '주력 프레임워크' },
-]
-
-const statStagger: Variants = {
+const container: Variants = {
   hidden: {},
-  show:   { transition: { staggerChildren: 0.06 } },
-}
-const statItem: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  show:   { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 400, damping: 28 } },
+  show: { transition: { staggerChildren: 0.08 } },
 }
 
-// 스냅 spring — "호로록" 효과
-const spring = { type: 'spring', stiffness: 320, damping: 26 } as const
+const item: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+}
 
 export default function About() {
   return (
-    <section id="about" className="relative py-28 px-6 overflow-hidden">
+    <section id="about" className="relative border-b border-border bg-white px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle label="01" title="Overview" eyebrow="소개" />
 
-      {/* 배경 blob */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute rounded-full"
-          style={{ width: 460, height: 460, top: '-8%', right: '-5%',
-            background: 'radial-gradient(circle, rgba(110,231,183,0.28) 0%, transparent 70%)' }} />
-        <div className="absolute rounded-full"
-          style={{ width: 380, height: 380, bottom: '-6%', left: '-6%',
-            background: 'radial-gradient(circle, rgba(253,230,138,0.22) 0%, transparent 70%)' }} />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto">
-
-        {/* 타이틀 */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={spring}
-          className="mb-10"
-        >
-          <SectionTitle label="01" title="About Me" />
-        </motion.div>
-
-        {/* 스탯 */}
-        <motion.div
-          className="grid grid-cols-3 gap-4 mb-12 max-w-lg"
-          variants={statStagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          {STATS.map(({ value, label }) => (
-            <motion.div key={label} variants={statItem}
-              className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-border shadow-sm text-center">
-              <p className="text-2xl font-bold text-text-heading">{value}</p>
-              <p className="text-sm text-text-muted mt-1">{label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* 좌우 카드 — 스냅 spring */}
-        <div className="grid md:grid-cols-2 gap-8">
-
-          {/* 왼쪽 — 소개 + 경력 */}
+        <div className="mt-11 grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
           <motion.div
-            initial={{ x: -80, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={spring}
+            initial={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5 }}
           >
-            <p className="text-lg text-text leading-relaxed mb-8">
-              <span className="font-semibold text-text-heading">Vue / Nuxt</span>를 주력으로 사용하며
-              LMS, CMS, 어드민, 랜딩·마케팅 페이지 등을 개발·유지보수합니다.
-              {' '}<span className="font-semibold text-text-heading">Phaser3</span> 기반 인터랙티브 콘텐츠 개발 경험도 보유하고 있습니다.
+            <p className="text-[18px] leading-9 text-text">
+              <span className="font-bold text-text-heading">Vue/Nuxt와 TypeScript</span>를 중심으로 제품 화면,
+              관리자 도구, 데이터 리포트, 인터랙티브 콘텐츠를 개발해 왔습니다. 특정 도메인의 화면만 만드는 것보다
+              권한, 상태, API 데이터, 성능, 보안 요구사항이 함께 움직이는 프론트엔드 구조를 다루는 데 강점이 있습니다.
             </p>
 
-            <h3 className="text-xs font-semibold tracking-[0.15em] text-text-muted uppercase mb-4">Experience</h3>
-            {EXPERIENCES.map((exp, i) => (
-              <div key={i} className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 border border-border shadow-sm">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <span className="font-semibold text-text-heading">{exp.company}</span>
-                  <span className="text-sm text-text-muted shrink-0 bg-surface-alt px-2 py-0.5 rounded-full border border-border">
-                    {exp.period}
-                  </span>
+            <div className="mt-8 rounded-lg border border-border bg-surface p-6">
+              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-text-muted">Current Role</p>
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-text-heading">{profile.company}</h3>
+                  <p className="text-[15px] font-semibold text-primary">{profile.role}</p>
                 </div>
-                <p className="text-sm font-medium text-primary mb-3">{exp.role}</p>
-                <ul className="space-y-1.5">
-                  {exp.bullets.map((b, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-text-muted">
-                      <span className="mt-1.5 w-1 h-1 rounded-full bg-primary/50 shrink-0" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-[15px] font-medium text-text-muted">{profile.period}</p>
               </div>
-            ))}
-          </motion.div>
+              <ul className="mt-5 space-y-2.5 text-[15px] leading-7 text-text-muted">
+                <li>LMS, 관리자 시스템, 데이터 리포트, 게시판/협업, 실시간 콘텐츠 개발</li>
+                <li>역할 기반 화면 분기, 인증/보안 처리, 공통 컴포넌트, 다국어 UI 개선</li>
+                <li>Phaser 3/Canvas 기반 인터랙션 최적화와 운영 자동화 문제 해결</li>
+              </ul>
+            </div>
 
-          {/* 오른쪽 — 스킬 */}
-          <motion.div
-            initial={{ x: 80, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ ...spring, delay: 0.05 }}
-          >
-            <h3 className="text-xs font-semibold tracking-[0.15em] text-text-muted uppercase mb-4">Skills</h3>
-            <div className="space-y-5">
-              {SKILLS.map(({ category, items }) => (
-                <div key={category}>
-                  <p className="text-sm font-medium text-text-muted mb-2">{category}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {items.map(skill => (
-                      <span key={skill}
-                        className="px-4 py-2 text-sm font-medium bg-white/80 backdrop-blur-sm border border-border rounded-full text-text hover:border-primary/50 hover:text-primary transition-colors cursor-default shadow-sm">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+            <dl className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2">
+              {heroStats.map(stat => (
+                <div key={stat.label} className="rounded-lg border border-border bg-white p-5 shadow-sm">
+                  <dt className="text-2xl font-bold text-text-heading">{stat.value}</dt>
+                  <dd className="mt-1.5 text-[13px] font-medium text-text-muted">{stat.label}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </motion.div>
 
+          <motion.div
+            variants={container}
+            initial="show"
+            whileInView="show"
+            viewport={{ once: true, margin: '-80px' }}
+            className="grid gap-4"
+          >
+            {skillGroups.map(group => (
+              <motion.div key={group.category} variants={item} className="rounded-lg border border-border bg-bg p-6">
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <h3 className="text-lg font-bold text-text-heading">{group.category}</h3>
+                  <span className="text-[13px] font-semibold text-text-muted">{group.items.length} items</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map(skill => (
+                    <span key={skill} className="rounded-md border border-border bg-white px-3.5 py-2 text-[14px] font-medium text-text">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
+
+        <motion.div
+          className="mt-12 rounded-lg border border-border bg-text-heading p-6 text-white"
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.45 }}
+        >
+          <div className="grid gap-5 md:grid-cols-[240px_1fr] md:items-center">
+            <div>
+              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-white/55">Work Summary</p>
+              <p className="mt-1 text-3xl font-bold">{caseStudies.length} Case Studies</p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-5">
+              {caseStudies.map(work => (
+                <a
+                  key={work.id}
+                  href={`#work-${work.id}`}
+                  className="rounded-md border border-white/15 bg-white/[0.08] px-3 py-2.5 text-[13px] font-semibold text-white/80 transition-colors hover:bg-white/[0.15] hover:text-white"
+                >
+                  {work.domain}
+                </a>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
-export function SectionTitle({ label, title }: { label: string; title: string }) {
+export function SectionTitle({
+  label,
+  title,
+  eyebrow,
+}: {
+  label: string
+  title: string
+  eyebrow?: string
+}) {
   return (
-    <div className="mb-2">
-      <span className="text-sm font-medium text-primary/60">{label} —</span>
-      <h2 className="text-4xl font-bold text-text-heading mt-1">{title}</h2>
+    <div>
+      <p className="text-[15px] font-bold text-primary">{label} · {eyebrow ?? 'Section'}</p>
+      <h2 className="mt-2 text-4xl font-bold leading-tight text-text-heading sm:text-5xl">{title}</h2>
     </div>
   )
 }

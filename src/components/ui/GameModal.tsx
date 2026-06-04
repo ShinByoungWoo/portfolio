@@ -2,97 +2,95 @@ import { useEffect, useRef, useState } from 'react'
 import type { GameMeta } from '../../types'
 
 interface GameModalProps {
-  game:    GameMeta
+  game: GameMeta
   onClose: () => void
 }
 
 export default function GameModal({ game, onClose }: GameModalProps) {
   const [activeIdx, setActiveIdx] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const currentVideo = game.videos[activeIdx] ?? game.videos[0]
 
-  // 탭 전환 시 비디오 처음부터
   useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    v.load()
-    v.play().catch(() => {})
+    const video = videoRef.current
+    if (!video) return
+    video.load()
+    video.play().catch(() => {})
   }, [activeIdx])
 
-  // ESC 닫기
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose()
+    }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const currentVideo = game.videos[activeIdx]
-
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
-      onClick={e => e.target === e.currentTarget && onClose()}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm"
+      onClick={event => event.target === event.currentTarget && onClose()}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="game-modal-title"
     >
-      <div className="w-full max-w-3xl bg-white rounded-3xl border border-border overflow-hidden shadow-2xl">
-
-        {/* 헤더 */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+      <div className="w-full max-w-4xl overflow-hidden rounded-lg border border-border bg-white shadow-2xl">
+        <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
           <div>
-            <h2 className="font-bold text-text-heading">{game.title}</h2>
-            <div className="flex flex-wrap gap-1.5 mt-1.5">
+            <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-primary">Interactive Work</p>
+            <h2 id="game-modal-title" className="mt-1 text-2xl font-bold text-text-heading">
+              {game.title}
+            </h2>
+            <div className="mt-3 flex flex-wrap gap-2">
               {game.tags.map(tag => (
-                <span key={tag} className="text-xs text-text-muted bg-surface-alt border border-border px-2 py-0.5 rounded-full">
+                <span key={tag} className="rounded-md border border-border bg-surface px-2.5 py-1.5 text-[13px] font-semibold text-text-muted">
                   {tag}
                 </span>
               ))}
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center text-text-muted hover:text-text-heading hover:bg-surface-alt rounded-full transition-colors text-lg"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border text-sm font-bold text-text-muted transition-colors hover:border-primary hover:text-primary"
             aria-label="닫기"
           >
-            ✕
+            X
           </button>
         </div>
 
-        {/* 탭 (영상 2개 이상일 때) */}
         {game.videos.length > 1 && (
-          <div className="flex gap-1 px-6 pt-4">
-            {game.videos.map((v, i) => (
+          <div className="flex flex-wrap gap-2 px-5 pt-4">
+            {game.videos.map((video, index) => (
               <button
-                key={i}
-                onClick={() => setActiveIdx(i)}
-                className={`px-4 py-1.5 text-sm font-medium rounded-full transition-colors ${
-                  activeIdx === i
-                    ? 'bg-primary text-white'
-                    : 'bg-surface-alt border border-border text-text-muted hover:text-text-heading'
+                key={video.src}
+                type="button"
+                onClick={() => setActiveIdx(index)}
+                className={`rounded-md border px-3 py-2 text-[15px] font-bold transition-colors ${
+                  activeIdx === index
+                    ? 'border-primary bg-primary text-white'
+                    : 'border-border bg-white text-text-muted hover:border-primary hover:text-primary'
                 }`}
               >
-                {v.label}
+                {video.label}
               </button>
             ))}
           </div>
         )}
 
-        {/* 비디오 플레이어 */}
-        <div className="px-6 pb-6 pt-4">
-          <div className="rounded-2xl overflow-hidden bg-black">
+        <div className="px-5 pb-5 pt-4">
+          <div className="overflow-hidden rounded-md bg-black">
             <video
               ref={videoRef}
-              key={currentVideo?.src}
-              src={currentVideo?.src}
+              key={currentVideo.src}
+              src={currentVideo.src}
               controls
               autoPlay
               playsInline
-              className="w-full"
-              style={{ maxHeight: '60vh' }}
+              className="max-h-[64vh] w-full"
             />
           </div>
-        </div>
-
-        {/* 설명 */}
-        <div className="px-6 pb-6">
-          <p className="text-sm text-text-muted leading-relaxed">{game.description}</p>
+          <p className="mt-4 text-[15px] leading-7 text-text-muted">{game.description}</p>
         </div>
       </div>
     </div>

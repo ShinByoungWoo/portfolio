@@ -1,149 +1,146 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
+import heroImage from '../../assets/hero.png'
+import { caseStudies, heroStats, profile } from '../../data/portfolio'
 
-const TYPING_TEXTS = [
-  'Frontend Developer',
-  'Vue / Nuxt / Pinia',
-  'React · TypeScript',
-  'Interactive Content',
-]
-
-function useTilt() {
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = e.currentTarget
-    const r  = el.getBoundingClientRect()
-    const x  = (e.clientX - r.left) / r.width  - 0.5
-    const y  = (e.clientY - r.top)  / r.height - 0.5
-    el.style.transform = `perspective(500px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateZ(6px)`
-  }
-  const onLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = ''
-  }
-  return { onMouseMove: onMove, onMouseLeave: onLeave }
-}
+const TYPING_TEXTS = ['Vue / Nuxt', 'TypeScript', 'Role-based UI', 'Canvas 60fps']
 
 export default function Hero() {
-  const [textIdx,   setTextIdx]   = useState(0)
+  const [textIdx, setTextIdx] = useState(0)
   const [displayed, setDisplayed] = useState('')
-  const [deleting,  setDeleting]  = useState(false)
-  const tilt = useTilt()
+  const [deleting, setDeleting] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
+  const featuredWork = caseStudies[0]
 
-  // 타이핑 애니메이션
   useEffect(() => {
+    if (shouldReduceMotion) {
+      setDisplayed(TYPING_TEXTS[0])
+      return
+    }
+
     const target = TYPING_TEXTS[textIdx]
-    let t: ReturnType<typeof setTimeout>
-    if (!deleting && displayed.length < target.length)
-      t = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 80)
-    else if (!deleting && displayed.length === target.length)
-      t = setTimeout(() => setDeleting(true), 1800)
-    else if (deleting && displayed.length > 0)
-      t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40)
-    else
-      t = setTimeout(() => { setDeleting(false); setTextIdx(p => (p + 1) % TYPING_TEXTS.length) }, 0)
-    return () => clearTimeout(t)
-  }, [displayed, deleting, textIdx])
+    let timer: ReturnType<typeof setTimeout>
+
+    if (!deleting && displayed.length < target.length) {
+      timer = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 75)
+    } else if (!deleting && displayed.length === target.length) {
+      timer = setTimeout(() => setDeleting(true), 1400)
+    } else if (deleting && displayed.length > 0) {
+      timer = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35)
+    } else {
+      timer = setTimeout(() => {
+        setDeleting(false)
+        setTextIdx(prev => (prev + 1) % TYPING_TEXTS.length)
+      }, 180)
+    }
+
+    return () => clearTimeout(timer)
+  }, [deleting, displayed, shouldReduceMotion, textIdx])
 
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* 배경 blob — 다른 섹션과 동일한 팔레트 */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute rounded-full"
-          style={{ width: 560, height: 560, top: '-10%', left: '-8%',
-            background: 'radial-gradient(circle, rgba(196,181,253,0.35) 0%, transparent 70%)' }} />
-        <div className="absolute rounded-full"
-          style={{ width: 480, height: 480, bottom: '-8%', right: '-6%',
-            background: 'radial-gradient(circle, rgba(110,231,183,0.28) 0%, transparent 70%)' }} />
-        <div className="absolute rounded-full"
-          style={{ width: 280, height: 280, top: '38%', right: '22%',
-            background: 'radial-gradient(circle, rgba(253,230,138,0.22) 0%, transparent 70%)' }} />
-      </div>
+    <section id="hero" className="relative min-h-[92svh] overflow-hidden border-b border-border bg-bg pt-24">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(#e7eaf1_1px,transparent_1px),linear-gradient(90deg,#e7eaf1_1px,transparent_1px)] bg-[size:48px_48px] opacity-55" />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+        >
+          <p className="mb-5 inline-flex rounded-md border border-border bg-white px-3.5 py-2.5 text-[15px] font-semibold text-text-muted shadow-sm">
+            {profile.company} · {profile.period}
+          </p>
 
-      <div className="relative max-w-6xl mx-auto px-6 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <h1 className="max-w-3xl text-5xl font-bold leading-tight text-text-heading sm:text-6xl lg:text-7xl">
+            {profile.name}
+          </h1>
+          <p className="mt-5 max-w-3xl text-2xl font-semibold leading-relaxed text-text-heading lg:text-[28px]">
+            {profile.headline}
+          </p>
 
-          {/* 좌측 텍스트 */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-border rounded-full text-sm text-text-muted mb-8 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-accent" />
-                로지브라더스 · 프론트엔드 개발자
-              </div>
-
-              <h1 className="text-5xl lg:text-6xl font-bold text-text-heading leading-[1.15] mb-3">
-                신병우
-              </h1>
-              <h2 className="text-2xl lg:text-3xl font-bold text-text-heading leading-[1.3] mb-6">
-                웹과 콘텐츠를{' '}
-                <span style={{
-                  background: 'linear-gradient(135deg, #5b3ff8, #00b87a)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}>
-                  만드는 개발자
-                </span>
-              </h2>
-
-              <div className="h-8 flex items-center mb-6">
-                <span className="text-xl font-medium text-text-muted">
-                  {displayed}<span className="animate-blink text-primary">|</span>
-                </span>
-              </div>
-
-              <p className="text-base text-text-muted leading-relaxed max-w-md mb-10">
-                로지브라더스에서 3년간 Vue / Nuxt 기반 LMS·CMS·어드민·랜딩 페이지를
-                개발·유지보수했습니다. Phaser3로 교육용 인터랙티브 콘텐츠도 직접 제작합니다.
-              </p>
-
-              <div className="flex flex-wrap gap-3">
-                <a href="#projects"
-                  className="px-6 py-3 bg-primary text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-primary/20">
-                  작업물 보기 →
-                </a>
-                <a href="#about"
-                  className="px-6 py-3 bg-white border border-border text-text-heading font-semibold rounded-full hover:border-primary/40 hover:text-primary transition-colors shadow-sm">
-                  About Me
-                </a>
-                <Link to="/resume"
-                  className="px-6 py-3 bg-white border border-border text-text-heading font-semibold rounded-full hover:border-primary/40 hover:text-primary transition-colors shadow-sm">
-                  이력서 보기
-                </Link>
-              </div>
-            </motion.div>
+          <div className="mt-5 flex h-8 items-center text-xl font-semibold text-primary">
+            <span>{displayed}</span>
+            <span className="ml-1 animate-blink">|</span>
           </div>
 
-          {/* 우측 — 3D 틸트 스킬 카드 */}
-          <div className="hidden lg:grid grid-cols-2 gap-4">
-            {[
-              { label: 'Vue 3 / Nuxt', sub: 'Main Framework', color: '#e8f5f0', icon: '💚', delay: 0.1 },
-              { label: 'React',        sub: 'Also Use',        color: '#ede8f5', icon: '⚛️', delay: 0.2 },
-              { label: 'TypeScript',   sub: 'Language',        color: '#e8eff5', icon: '🔷', delay: 0.3 },
-              { label: 'Phaser3',      sub: 'Game Content',    color: '#f5ede8', icon: '🎮', delay: 0.4 },
-            ].map(({ label, sub, color, icon, delay }) => (
-              <motion.div
-                key={label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay }}
-                className="bg-white rounded-2xl p-5 shadow-sm border border-border cursor-default"
-                style={{ transition: 'transform 0.15s ease, box-shadow 0.15s ease' }}
-                {...tilt}
-              >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center text-2xl mb-3"
-                  style={{ background: color }}>
-                  {icon}
-                </div>
-                <p className="font-semibold text-text-heading">{label}</p>
-                <p className="text-sm text-text-muted">{sub}</p>
-              </motion.div>
+          <p className="mt-6 max-w-3xl text-[17px] leading-8 text-text-muted">
+            {profile.summary}
+          </p>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#projects"
+              className="rounded-md bg-primary px-6 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-primary/15 transition-opacity hover:opacity-90"
+            >
+              대표 프로젝트 보기
+            </a>
+            <a
+              href="#games"
+              className="rounded-md border border-border bg-white px-6 py-3.5 text-[15px] font-bold text-text-heading transition-colors hover:border-primary hover:text-primary"
+            >
+              인터랙티브 작업 보기
+            </a>
+            <Link
+              to="/resume"
+              className="rounded-md border border-border bg-white px-6 py-3.5 text-[15px] font-bold text-text-heading transition-colors hover:border-primary hover:text-primary"
+            >
+              이력서 열기
+            </Link>
+          </div>
+
+          <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+            {heroStats.map(stat => (
+              <div key={stat.label} className="rounded-lg border border-border bg-white p-5 shadow-sm">
+                <dt className="text-2xl font-bold text-text-heading">{stat.value}</dt>
+                <dd className="mt-1.5 text-[13px] font-medium text-text-muted">{stat.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.1 }}
+          className="rounded-lg border border-border bg-white p-5 shadow-xl"
+        >
+          <div className="mb-5 flex items-center justify-between border-b border-border pb-4">
+            <div>
+              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-text-muted">Featured Work</p>
+              <h2 className="mt-1.5 text-xl font-bold text-text-heading">{featuredWork.title}</h2>
+            </div>
+            <span className="rounded-md bg-primary/10 px-3 py-1.5 text-[13px] font-bold text-primary">
+              {featuredWork.domain}
+            </span>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-[1fr_128px]">
+            <div className="overflow-hidden rounded-md border border-border bg-black">
+              <video
+                src="/assets/game_video/typing_game_word.mp4"
+                muted
+                loop
+                autoPlay={!shouldReduceMotion}
+                playsInline
+                preload="metadata"
+                className="aspect-video h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex items-center justify-center rounded-md border border-border bg-surface-alt p-4">
+              <img src={heroImage} alt="" className="h-28 w-28 object-contain" />
+            </div>
+          </div>
+
+          <p className="mt-5 text-[15px] leading-7 text-text-muted">{featuredWork.summary}</p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {featuredWork.stack.slice(0, 5).map(tech => (
+              <span key={tech} className="rounded-md border border-border bg-surface px-2.5 py-1.5 text-[13px] font-semibold text-text-muted">
+                {tech}
+              </span>
             ))}
           </div>
-
-        </div>
+        </motion.div>
       </div>
     </section>
   )
