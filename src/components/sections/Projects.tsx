@@ -4,7 +4,7 @@ import type { Variants } from 'framer-motion'
 import { caseStudies } from '../../data/portfolio'
 import { SectionTitle } from './About'
 
-const filters = ['All', 'LMS', 'Admin', 'Security', 'Automation', 'Interactive']
+const filters = ['All', 'LMS', 'Admin', 'Security', 'Automation', 'Interactive', 'Side Project']
 
 const container: Variants = {
   hidden: {},
@@ -128,6 +128,9 @@ export default function Projects() {
             <div className="mt-6 grid gap-5">
               <WorkBlock title="문제" body={activeWork.problem} />
               <WorkBlock title="역할" body={activeWork.role} />
+              {'collaboration' in activeWork && typeof activeWork.collaboration === 'string' && (
+                <WorkBlock title="개발 맥락" body={activeWork.collaboration} />
+              )}
 
               <div>
                 <h4 className="text-[15px] font-bold text-text-heading">결과</h4>

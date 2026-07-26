@@ -61,6 +61,11 @@ export default function Resume() {
                 <p className="text-sm font-semibold text-primary">{profile.period}</p>
               </div>
             </div>
+            <p className="mt-3 text-sm leading-relaxed text-text-muted">{profile.companyIntro}</p>
+            <p className="mt-3 text-sm leading-relaxed text-text-muted">
+              900개 이상 교육기관이 채택한 SW·AI 교육 플랫폼에서 LMS와 LMS 운영 어드민을 유사한 시기에 병렬 개발하며,
+              계정·기관·학습·콘텐츠 관리 흐름을 구현했습니다.
+            </p>
             <ul className="mt-4 space-y-2">
               {experienceBullets.map(bullet => (
                 <ResumeBullet key={bullet}>{bullet}</ResumeBullet>
@@ -79,6 +84,9 @@ export default function Resume() {
                     </div>
                     <p className="text-sm font-medium text-text-muted">{project.period}</p>
                   </div>
+                  {'collaboration' in project && typeof project.collaboration === 'string' && (
+                    <p className="mt-2 text-sm leading-relaxed text-text-muted">{project.collaboration}</p>
+                  )}
                   <p className="mt-3 text-sm leading-relaxed text-text-muted">{project.summary}</p>
                   <ul className="mt-3 space-y-2">
                     {project.outcomes.map(outcome => (
@@ -88,6 +96,17 @@ export default function Resume() {
                   <p className="mt-3 text-xs font-semibold text-text-muted">기술: {project.stack.join(', ')}</p>
                 </section>
               ))}
+            </div>
+          </ResumeSection>
+
+          <ResumeSection title="학력">
+            <div className="space-y-3 text-sm leading-relaxed text-text-muted">
+              <p>
+                <span className="font-bold text-text-heading">전남과학대학교</span> · 호텔관광학과 졸업
+              </p>
+              <p>
+                <span className="font-bold text-text-heading">한국방송통신대학교</span> · 재학 중
+              </p>
             </div>
           </ResumeSection>
 

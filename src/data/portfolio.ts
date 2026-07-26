@@ -1,5 +1,7 @@
 import type { GameMeta } from '../types'
 
+const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
 export const profile = {
   name: '신병우',
   role: 'Frontend Developer',
@@ -10,6 +12,8 @@ export const profile = {
   phone: '010-4901-2582',
   github: 'https://github.com/ShinByoungWoo',
   company: 'codmos.io',
+  companyIntro:
+    'codmos.io (로지브라더스) — 초등 코딩·컴퓨팅 사고력 교육 에듀테크 스타트업, 900개 이상 교육기관 채택',
   period: '2022.06 ~ 현재',
 }
 
@@ -23,7 +27,7 @@ export const heroStats = [
 export const skillGroups = [
   {
     category: 'Frontend',
-    items: ['Vue 2/3', 'Nuxt 3/4', 'TypeScript', 'JavaScript', 'Pinia', 'PrimeVue', 'SCSS'],
+    items: ['Vue 2/3', 'Nuxt 3/4', 'React 19', 'React Router', 'Vite', 'TypeScript', 'JavaScript', 'Pinia', 'PrimeVue', 'SCSS'],
   },
   {
     category: 'Product UI',
@@ -54,6 +58,7 @@ export const caseStudies = [
     subtitle: '교사·학생 학습 관리 시스템',
     period: '2025.10 ~ 2026.03',
     domain: 'LMS',
+    collaboration: 'Codmos Admin Web v2와 유사한 시기에 병렬로 개발한 사용자용 LMS입니다.',
     summary:
       'Nuxt 4 기반의 사용자별 학습 관리 서비스입니다. 역할별 화면, 학습 데이터 리포트, 게시판/협업 기능, AI 채팅 UI처럼 복잡한 상태와 권한이 얽힌 화면 흐름을 구현했습니다.',
     problem: '역할별 접근 제어, 학습 상태, AI 리포트, 게시판/협업 기능이 한 서비스 안에서 일관되게 맞물려야 했습니다.',
@@ -73,6 +78,7 @@ export const caseStudies = [
     subtitle: '운영 관리자 시스템',
     period: '2025.09 ~ 2026.05',
     domain: 'Admin',
+    collaboration: 'CODMOS Web LMS와 유사한 시기에 병렬로 개발한 운영자용 시스템입니다.',
     summary:
       '계정, 기관, 콘텐츠, 학습 관리 도메인을 다루는 Nuxt 4 기반 백오피스입니다. 운영자가 반복적으로 쓰는 관리 화면을 빠르고 안정적으로 구현했습니다.',
     problem: '대용량 목록, 권한별 UI, 연동 셀렉트, 콘텐츠 관리가 운영 업무와 직접 연결되어 있어 빠른 탐색성과 안정성이 필요했습니다.',
@@ -123,6 +129,23 @@ export const caseStudies = [
     ],
     stack: ['Nuxt 3', 'Puppeteer', 'AWS S3/CDN', 'iframe', 'postMessage', 'Blockly'],
     proof: '운영 중 발생한 콘텐츠 깨짐 문제를 자동화 파이프라인으로 해결한 사례입니다.',
+  },
+  {
+    id: 'frontend-portfolio',
+    title: 'Frontend Portfolio',
+    subtitle: 'React 기반 개인 포트폴리오',
+    period: '2026.07 ~ 현재',
+    domain: 'Side Project',
+    summary: 'React 19, TypeScript, Vite 기반으로 구축한 개인 포트폴리오 및 이력서 웹사이트입니다.',
+    problem: 'Vue/Nuxt 중심의 경험을 React 기반 제품 구조로 정리하고, 프로젝트와 이력서를 하나의 공개 웹사이트에서 일관되게 보여줄 필요가 있었습니다.',
+    role: '화면 구조와 공통 UI를 설계하고, 프로젝트·경력 데이터를 분리해 관리했으며 GitHub Pages 배포와 직접 접속 처리를 구현했습니다.',
+    outcomes: [
+      '포트폴리오와 이력서를 React Router로 분리하고 GitHub Pages 배포 경로와 직접 접속 처리 구현',
+      '섹션·레이아웃·공통 UI 컴포넌트를 분리하고, 프로젝트·경력 데이터는 별도 데이터 레이어로 관리',
+      'GitHub Actions 기반 프로덕션 빌드·배포 자동화와 실제 공개 URL 운영',
+    ],
+    stack: ['React 19', 'TypeScript', 'Vite', 'React Router', 'Tailwind CSS', 'GitHub Pages'],
+    proof: 'React 기반 화면 구조, 데이터 분리, 정적 배포까지 직접 설계·구현한 사이드 프로젝트입니다.',
   },
   {
     id: 'phaser-optimization',
@@ -185,8 +208,8 @@ export const gameShowcases: GameMeta[] = [
     description:
       '한글/영문 타자 학습 콘텐츠입니다. 자모 분해 기반 WPM 계산, 정확도 측정, 단계별 문제 전환, 결과 리포트 흐름을 구현했습니다.',
     videos: [
-      { label: '자리 연습', src: '/assets/game_video/typing_game_finger_position_practice.mp4' },
-      { label: '단어 연습', src: '/assets/game_video/typing_game_word.mp4' },
+      { label: '자리 연습', src: publicAsset('assets/game_video/typing_game_finger_position_practice.mp4') },
+      { label: '단어 연습', src: publicAsset('assets/game_video/typing_game_word.mp4') },
     ],
     tags: ['Phaser 3', 'Korean IME', 'WPM'],
   },
@@ -195,7 +218,7 @@ export const gameShowcases: GameMeta[] = [
     title: 'Conveyor Line',
     description:
       '박스를 올바른 목적지로 분류하는 컨베이어 콘텐츠입니다. 아이소메트릭 타일맵, 분기 타일 클릭, PathFollower 이동 로직을 구현했습니다.',
-    videos: [{ label: '게임 플레이', src: '/assets/game_video/Isometric_game.mp4' }],
+    videos: [{ label: '게임 플레이', src: publicAsset('assets/game_video/Isometric_game.mp4') }],
     tags: ['Phaser 3', 'Tilemap', 'PathFollower'],
   },
   {
@@ -203,7 +226,7 @@ export const gameShowcases: GameMeta[] = [
     title: 'Laser Puzzle',
     description:
       '레이저 발사대와 거울을 이용해 배터리를 켜는 퍼즐입니다. 9x9 그리드 이동, 거울 반사, 충돌 판정, 성공 조건 검사를 구현했습니다.',
-    videos: [{ label: '게임 플레이', src: '/assets/game_video/laser_game.mp4' }],
+    videos: [{ label: '게임 플레이', src: publicAsset('assets/game_video/laser_game.mp4') }],
     tags: ['Phaser 3', 'Algorithm', 'Grid'],
   },
 ]
