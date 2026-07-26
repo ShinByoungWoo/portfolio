@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import type { GameMeta } from '../../types'
 
+const DEFAULT_VIDEO_VOLUME = 0.1
+
 interface GameModalProps {
   game: GameMeta
   onClose: () => void
@@ -14,6 +16,7 @@ export default function GameModal({ game, onClose }: GameModalProps) {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
+    video.volume = DEFAULT_VIDEO_VOLUME
     video.load()
     video.play().catch(() => {})
   }, [activeIdx])
@@ -87,6 +90,9 @@ export default function GameModal({ game, onClose }: GameModalProps) {
               controls
               autoPlay
               playsInline
+              onLoadedMetadata={event => {
+                event.currentTarget.volume = DEFAULT_VIDEO_VOLUME
+              }}
               className="max-h-[64vh] w-full"
             />
           </div>

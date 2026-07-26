@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import heroImage from '../../assets/hero.png'
-import { caseStudies, heroStats, profile } from '../../data/portfolio'
+import { heroStats, profile } from '../../data/portfolio'
 
 const TYPING_TEXTS = ['Vue / Nuxt', 'TypeScript', 'Role-based UI', 'Canvas 60fps']
 
@@ -11,11 +10,10 @@ export default function Hero() {
   const [displayed, setDisplayed] = useState('')
   const [deleting, setDeleting] = useState(false)
   const shouldReduceMotion = useReducedMotion()
-  const featuredWork = caseStudies[0]
+  const typingText = shouldReduceMotion ? TYPING_TEXTS[0] : displayed
 
   useEffect(() => {
     if (shouldReduceMotion) {
-      setDisplayed(TYPING_TEXTS[0])
       return
     }
 
@@ -39,13 +37,14 @@ export default function Hero() {
   }, [deleting, displayed, shouldReduceMotion, textIdx])
 
   return (
-    <section id="hero" className="relative min-h-[92svh] overflow-hidden border-b border-border bg-bg pt-24">
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(#e7eaf1_1px,transparent_1px),linear-gradient(90deg,#e7eaf1_1px,transparent_1px)] bg-[size:48px_48px] opacity-55" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+    <section id="hero" className="relative min-h-[88svh] overflow-hidden border-b border-border bg-bg pt-24">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(#e7eaf1_1px,transparent_1px),linear-gradient(90deg,#e7eaf1_1px,transparent_1px)] bg-[size:48px_48px] opacity-55" />
+      <div className="relative mx-auto flex max-w-7xl px-6 pb-20 pt-10">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
+          className="max-w-4xl"
         >
           <p className="mb-5 inline-flex rounded-md border border-border bg-white px-3.5 py-2.5 text-[15px] font-semibold text-text-muted shadow-sm">
             {profile.company} · {profile.period}
@@ -59,7 +58,7 @@ export default function Hero() {
           </p>
 
           <div className="mt-5 flex h-8 items-center text-xl font-semibold text-primary">
-            <span>{displayed}</span>
+            <span>{typingText}</span>
             <span className="ml-1 animate-blink">|</span>
           </div>
 
@@ -88,58 +87,14 @@ export default function Hero() {
             </Link>
           </div>
 
-          <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <dl className="mt-10 grid max-w-4xl grid-cols-2 gap-x-6 gap-y-4 border-y border-border bg-white/60 py-5 sm:grid-cols-4">
             {heroStats.map(stat => (
-              <div key={stat.label} className="rounded-lg border border-border bg-white p-5 shadow-sm">
+              <div key={stat.label}>
                 <dt className="text-2xl font-bold text-text-heading">{stat.value}</dt>
-                <dd className="mt-1.5 text-[13px] font-medium text-text-muted">{stat.label}</dd>
+                <dd className="mt-1 text-[13px] font-medium leading-5 text-text-muted">{stat.label}</dd>
               </div>
             ))}
           </dl>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 26 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="rounded-lg border border-border bg-white p-5 shadow-xl"
-        >
-          <div className="mb-5 flex items-center justify-between border-b border-border pb-4">
-            <div>
-              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-text-muted">Featured Work</p>
-              <h2 className="mt-1.5 text-xl font-bold text-text-heading">{featuredWork.title}</h2>
-            </div>
-            <span className="rounded-md bg-primary/10 px-3 py-1.5 text-[13px] font-bold text-primary">
-              {featuredWork.domain}
-            </span>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-[1fr_128px]">
-            <div className="overflow-hidden rounded-md border border-border bg-black">
-              <video
-                src="/assets/game_video/typing_game_word.mp4"
-                muted
-                loop
-                autoPlay={!shouldReduceMotion}
-                playsInline
-                preload="metadata"
-                className="aspect-video h-full w-full object-cover"
-              />
-            </div>
-            <div className="flex items-center justify-center rounded-md border border-border bg-surface-alt p-4">
-              <img src={heroImage} alt="" className="h-28 w-28 object-contain" />
-            </div>
-          </div>
-
-          <p className="mt-5 text-[15px] leading-7 text-text-muted">{featuredWork.summary}</p>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {featuredWork.stack.slice(0, 5).map(tech => (
-              <span key={tech} className="rounded-md border border-border bg-surface px-2.5 py-1.5 text-[13px] font-semibold text-text-muted">
-                {tech}
-              </span>
-            ))}
-          </div>
         </motion.div>
       </div>
     </section>

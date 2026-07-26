@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const SECTIONS = [
   { id: 'about', label: 'Overview' },
@@ -11,11 +11,6 @@ const SECTIONS = [
 export default function PageNavigator() {
   const [progress, setProgress] = useState(0)
   const [active, setActive] = useState('')
-
-  const currentIndex = useMemo(() => {
-    const activeIndex = SECTIONS.findIndex(section => section.id === active)
-    return activeIndex < 0 ? 0 : activeIndex + 1
-  }, [active])
 
   useEffect(() => {
     const onScroll = () => {
@@ -43,33 +38,37 @@ export default function PageNavigator() {
   }, [])
 
   return (
-    <aside className="fixed bottom-6 right-6 z-30 hidden w-60 rounded-lg border border-border bg-white/92 p-5 shadow-lg backdrop-blur lg:block">
-      <div className="mb-3 flex items-center justify-between">
-        <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-text-muted">Navigator</p>
-        <p className="text-[13px] font-semibold text-primary">{currentIndex}/{SECTIONS.length}</p>
+    <aside
+      className="fixed right-8 top-28 z-20 hidden w-40 text-[13px] min-[1680px]:block"
+      aria-label="Page sections"
+    >
+      <div className="mb-3 border-l border-border pl-4">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted/70">Sections</p>
       </div>
 
-      <div className="mb-4 h-2 overflow-hidden rounded-sm bg-surface-alt" aria-hidden="true">
-        <div className="h-full bg-primary transition-[width] duration-200" style={{ width: `${progress}%` }} />
-      </div>
-
-      <div className="space-y-2">
-        {SECTIONS.map(section => {
-          const isActive = active === section.id
-          return (
-            <a
-              key={section.id}
-              href={`#${section.id}`}
-              className={`flex items-center gap-2 rounded-md px-2.5 py-2 text-[13px] font-medium transition-colors ${
-                isActive ? 'bg-primary/10 text-primary' : 'text-text-muted hover:bg-surface hover:text-text-heading'
-              }`}
-            >
-              <span className={`h-2 w-2 rounded-sm ${isActive ? 'bg-primary' : 'bg-border'}`} />
-              {section.label}
-            </a>
-          )
-        })}
-      </div>
+      <nav className="relative border-l border-border pl-4">
+        <div
+          className="absolute -left-px top-0 w-px bg-primary/70 transition-[height] duration-200"
+          style={{ height: `${progress}%` }}
+          aria-hidden="true"
+        />
+        <div className="space-y-1">
+          {SECTIONS.map(section => {
+            const isActive = active === section.id
+            return (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`block py-1.5 leading-tight transition-colors ${
+                  isActive ? 'font-semibold text-text-heading' : 'font-medium text-text-muted/70 hover:text-text-heading'
+                }`}
+              >
+                {section.label}
+              </a>
+            )
+          })}
+        </div>
+      </nav>
     </aside>
   )
 }

@@ -52,7 +52,7 @@ export const caseStudies = [
     id: 'codmos-lms',
     title: 'CODMOS Web LMS',
     subtitle: '교사·학생 학습 관리 시스템',
-    period: '2025.10 ~ 2026.05',
+    period: '2025.10 ~ 2026.03',
     domain: 'LMS',
     summary:
       'Nuxt 4 기반의 사용자별 학습 관리 서비스입니다. 역할별 화면, 학습 데이터 리포트, 게시판/협업 기능, AI 채팅 UI처럼 복잡한 상태와 권한이 얽힌 화면 흐름을 구현했습니다.',

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
-import { caseStudies, heroStats, profile, skillGroups } from '../../data/portfolio'
+import { heroStats, profile, skillGroups } from '../../data/portfolio'
 
 const container: Variants = {
   hidden: {},
@@ -81,32 +81,6 @@ export default function About() {
             ))}
           </motion.div>
         </div>
-
-        <motion.div
-          className="mt-12 rounded-lg border border-border bg-text-heading p-6 text-white"
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.45 }}
-        >
-          <div className="grid gap-5 md:grid-cols-[240px_1fr] md:items-center">
-            <div>
-              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-white/55">Work Summary</p>
-              <p className="mt-1 text-3xl font-bold">{caseStudies.length} Case Studies</p>
-            </div>
-            <div className="grid gap-2 sm:grid-cols-5">
-              {caseStudies.map(work => (
-                <a
-                  key={work.id}
-                  href={`#work-${work.id}`}
-                  className="rounded-md border border-white/15 bg-white/[0.08] px-3 py-2.5 text-[13px] font-semibold text-white/80 transition-colors hover:bg-white/[0.15] hover:text-white"
-                >
-                  {work.domain}
-                </a>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
