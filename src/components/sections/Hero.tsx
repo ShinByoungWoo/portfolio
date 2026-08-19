@@ -1,102 +1,79 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
-import { heroStats, profile } from '../../data/portfolio'
-
-const TYPING_TEXTS = ['Vue / Nuxt', 'TypeScript', 'Role-based UI', 'Canvas 60fps']
+import { profile, proofPoints } from '../../data/portfolio'
 
 export default function Hero() {
-  const [textIdx, setTextIdx] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [deleting, setDeleting] = useState(false)
-  const shouldReduceMotion = useReducedMotion()
-  const typingText = shouldReduceMotion ? TYPING_TEXTS[0] : displayed
+    return (
+        <section id="hero" className="border-b border-ink/20 bg-paper px-5 pb-16 pt-32 sm:px-8 sm:pb-20 sm:pt-40">
+            <div className="mx-auto max-w-[1440px]">
+                <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-20">
+                    <div>
+                        <p className="mb-7 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.22em] text-accent">
+                            <span className="h-2 w-2 bg-accent" aria-hidden="true" />
+                            Frontend engineer · Seoul
+                        </p>
 
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      return
-    }
+                        <h1 className="max-w-5xl text-[clamp(3.5rem,8vw,8.7rem)] font-black leading-[0.88] tracking-[-0.075em] text-ink">
+                            제품의 복잡도를
+                            <span className="block text-accent">사용자의 흐름으로.</span>
+                        </h1>
+                    </div>
 
-    const target = TYPING_TEXTS[textIdx]
-    let timer: ReturnType<typeof setTimeout>
+                    <aside className="border-t-4 border-ink pt-6">
+                        <p className="text-[12px] font-black uppercase tracking-[0.18em] text-ink/45">
+                            Currently
+                        </p>
+                        <p className="mt-4 text-2xl font-black leading-tight tracking-[-0.03em] text-ink">
+                            {profile.company}
+                        </p>
+                        <p className="mt-1 text-[14px] font-bold text-accent">{profile.period}</p>
+                        <p className="mt-6 text-[16px] leading-7 text-ink/70">
+                            권한이 다른 사용자와 데이터가 많은 제품에서 화면보다 먼저 경계를 설계합니다.
+                        </p>
+                    </aside>
+                </div>
 
-    if (!deleting && displayed.length < target.length) {
-      timer = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 75)
-    } else if (!deleting && displayed.length === target.length) {
-      timer = setTimeout(() => setDeleting(true), 1400)
-    } else if (deleting && displayed.length > 0) {
-      timer = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35)
-    } else {
-      timer = setTimeout(() => {
-        setDeleting(false)
-        setTextIdx(prev => (prev + 1) % TYPING_TEXTS.length)
-      }, 180)
-    }
+                <div className="mt-16 grid gap-10 border-t border-ink/20 pt-9 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-20">
+                    <div className="max-w-3xl space-y-4 text-[17px] leading-8 text-ink/68 sm:text-[19px] sm:leading-9">
+                        {profile.portfolioIntro.map(paragraph => (
+                            <p key={paragraph}>{paragraph}</p>
+                        ))}
+                    </div>
 
-    return () => clearTimeout(timer)
-  }, [deleting, displayed, shouldReduceMotion, textIdx])
+                    <div className="flex flex-wrap items-start gap-x-6 gap-y-4 lg:flex-col lg:gap-3">
+                        <a
+                            href="#work"
+                            className="inline-flex min-h-12 items-center bg-ink px-5 text-[13px] font-black text-paper transition-colors hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                        >
+                            선택한 작업 보기 ↓
+                        </a>
+                        <Link
+                            to="/resume"
+                            className="inline-flex min-h-12 items-center border-b-2 border-ink px-1 text-[13px] font-black text-ink transition-colors hover:border-accent hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                        >
+                            전체 이력서 읽기 ↗
+                        </Link>
+                    </div>
+                </div>
 
-  return (
-    <section id="hero" className="relative min-h-[88svh] overflow-hidden border-b border-border bg-bg pt-24">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(#e7eaf1_1px,transparent_1px),linear-gradient(90deg,#e7eaf1_1px,transparent_1px)] bg-[size:48px_48px] opacity-55" />
-      <div className="relative mx-auto flex max-w-7xl px-6 pb-20 pt-10">
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          className="max-w-4xl"
-        >
-          <p className="mb-5 inline-flex rounded-md border border-border bg-white px-3.5 py-2.5 text-[15px] font-semibold text-text-muted shadow-sm">
-            {profile.company} · {profile.period}
-          </p>
-
-          <h1 className="max-w-3xl text-5xl font-bold leading-tight text-text-heading sm:text-6xl lg:text-7xl">
-            {profile.name}
-          </h1>
-          <p className="mt-5 max-w-3xl text-2xl font-semibold leading-relaxed text-text-heading lg:text-[28px]">
-            {profile.headline}
-          </p>
-
-          <div className="mt-5 flex h-8 items-center text-xl font-semibold text-primary">
-            <span>{typingText}</span>
-            <span className="ml-1 animate-blink">|</span>
-          </div>
-
-          <p className="mt-6 max-w-3xl text-[17px] leading-8 text-text-muted">
-            {profile.summary}
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href="#projects"
-              className="rounded-md bg-primary px-6 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-primary/15 transition-opacity hover:opacity-90"
-            >
-              대표 프로젝트 보기
-            </a>
-            <a
-              href="#games"
-              className="rounded-md border border-border bg-white px-6 py-3.5 text-[15px] font-bold text-text-heading transition-colors hover:border-primary hover:text-primary"
-            >
-              인터랙티브 작업 보기
-            </a>
-            <Link
-              to="/resume"
-              className="rounded-md border border-border bg-white px-6 py-3.5 text-[15px] font-bold text-text-heading transition-colors hover:border-primary hover:text-primary"
-            >
-              이력서 열기
-            </Link>
-          </div>
-
-          <dl className="mt-10 grid max-w-4xl grid-cols-2 gap-x-6 gap-y-4 border-y border-border bg-white/60 py-5 sm:grid-cols-4">
-            {heroStats.map(stat => (
-              <div key={stat.label}>
-                <dt className="text-2xl font-bold text-text-heading">{stat.value}</dt>
-                <dd className="mt-1 text-[13px] font-medium leading-5 text-text-muted">{stat.label}</dd>
-              </div>
-            ))}
-          </dl>
-        </motion.div>
-      </div>
-    </section>
-  )
+                <dl className="mt-16 grid border-y border-ink/20 sm:grid-cols-3">
+                    {proofPoints.map((point, index) => (
+                        <div
+                            key={point.label}
+                            className={`py-6 sm:px-7 ${index > 0 ? 'border-t border-ink/20 sm:border-l sm:border-t-0' : ''}`}
+                        >
+                            <dt className="flex items-baseline gap-3">
+                                <span className="text-4xl font-black tracking-[-0.06em] text-ink sm:text-5xl">
+                                    {point.value}
+                                </span>
+                                <span className="text-[12px] font-black uppercase tracking-[0.12em] text-accent">
+                                    {point.label}
+                                </span>
+                            </dt>
+                            <dd className="mt-3 max-w-sm text-[14px] leading-6 text-ink/55">{point.detail}</dd>
+                        </div>
+                    ))}
+                </dl>
+            </div>
+        </section>
+    )
 }

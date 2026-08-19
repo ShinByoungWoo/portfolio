@@ -1,14 +1,36 @@
-export type GameId = 'typing' | 'isometric' | 'spaceshooter'
-
-export interface GameVideo {
-  label: string
-  src:   string
+export interface InteractiveClip {
+    id: string
+    title: string
+    label: string
+    src: string
+    description: string
 }
 
-export interface GameMeta {
-  id:          GameId
-  title:       string
-  description: string
-  videos:      GameVideo[]
-  tags:        string[]
+export interface ProjectDecision {
+    question: string
+    reason: string
+    implementation: string
+}
+
+export interface TechnologyChoice {
+    name: string
+    reason: string
+}
+
+export interface CaseStudy {
+    id: string
+    number: string
+    category: string
+    title: string
+    subtitle: string
+    period: string
+    summary: string
+    decisions: ProjectDecision[]
+    choices: TechnologyChoice[]
+    result: {
+        value: string
+        label: string
+    }
+    media?: InteractiveClip[]
+    resumeBullets: string[]
 }

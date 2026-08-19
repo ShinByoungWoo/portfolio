@@ -1,85 +1,43 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const NAV_ITEMS = [
-  { label: 'Overview', href: '#about' },
-  { label: 'Work', href: '#projects' },
-  { label: 'Badges', href: '#achievements' },
-  { label: 'Interactive', href: '#games' },
-  { label: 'Contact', href: '#contact' },
+const navItems = [
+    { label: '작업', href: '#work' },
+    { label: '경력', href: '#experience' },
+    { label: '연락', href: '#contact' },
 ]
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
+    return (
+        <header className="fixed inset-x-0 top-0 z-40 border-b border-ink/15 bg-paper/95 backdrop-blur-md">
+            <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8">
+                <a href="#hero" className="group flex items-baseline gap-3" aria-label="맨 위로 이동">
+                    <span className="text-[15px] font-black tracking-[-0.02em] text-ink">SBW</span>
+                    <span className="hidden text-[11px] font-bold uppercase tracking-[0.18em] text-ink/45 transition-colors group-hover:text-accent sm:inline">
+                        Frontend engineering
+                    </span>
+                </a>
 
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 32)
+                <div className="flex items-center gap-5 sm:gap-8">
+                    <nav className="hidden items-center gap-7 md:flex" aria-label="포트폴리오 섹션">
+                        {navItems.map(item => (
+                            <a
+                                key={item.href}
+                                href={item.href}
+                                className="text-[13px] font-bold text-ink/60 underline-offset-4 transition-colors hover:text-accent hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                            >
+                                {item.label}
+                            </a>
+                        ))}
+                    </nav>
 
-      const sections = ['contact', 'games', 'achievements', 'projects', 'about']
-      for (const id of sections) {
-        const el = document.getElementById(id)
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(id)
-          return
-        }
-      }
-      setActiveSection('')
-    }
-
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-40 transition-all duration-300 ${
-        scrolled ? 'border-b border-border bg-bg/90 shadow-sm backdrop-blur-xl' : 'bg-transparent'
-      }`}
-    >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-3 group" aria-label="Go to top">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-text-heading text-xs font-bold text-white">
-            BW
-          </span>
-          <span className="text-[15px] font-semibold text-text-heading transition-colors group-hover:text-primary">
-            Frontend Portfolio
-          </span>
-        </a>
-
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Portfolio sections">
-          {NAV_ITEMS.map(({ label, href }) => (
-            <a
-              key={href}
-              href={href}
-              className={`rounded-md px-3 py-2 text-[14px] font-medium transition-all ${
-                activeSection === href.slice(1)
-                  ? 'bg-primary text-white'
-                  : 'text-text-muted hover:bg-surface hover:text-text-heading'
-              }`}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Link
-            to="/resume"
-            className="rounded-md border border-border bg-white px-4 py-2 text-[14px] font-semibold text-text-heading transition-colors hover:border-primary hover:text-primary"
-          >
-            Resume
-          </Link>
-          <a
-            href="#contact"
-            className="hidden rounded-md bg-text-heading px-4 py-2 text-[14px] font-semibold text-white transition-opacity hover:opacity-85 sm:inline-flex"
-          >
-            Contact
-          </a>
-        </div>
-      </div>
-    </header>
-  )
+                    <Link
+                        to="/resume"
+                        className="border-l border-ink/20 pl-5 text-[13px] font-black text-ink transition-colors hover:text-accent focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:pl-8"
+                    >
+                        이력서 ↗
+                    </Link>
+                </div>
+            </div>
+        </header>
+    )
 }

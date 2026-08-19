@@ -1,232 +1,293 @@
-import type { GameMeta } from '../types'
+import type { CaseStudy, InteractiveClip } from '../types'
 
 const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path}`
 
 export const profile = {
-  name: '신병우',
-  role: 'Frontend Developer',
-  headline: '복잡한 권한·상태·데이터 흐름을 사용자 화면으로 정리하는 프론트엔드 개발자',
-  summary:
-    'Vue/Nuxt와 TypeScript를 중심으로 서비스 화면, 관리자 도구, 데이터 리포트, 인터랙티브 콘텐츠를 개발했습니다. 교육 도메인에서 쌓은 경험을 바탕으로 역할 기반 접근 제어, 상태 관리, 성능 개선, 보안 대응, 운영 자동화처럼 다양한 제품에 필요한 프론트엔드 문제를 다룹니다.',
-  email: 'sbw0121@naver.com',
-  phone: '010-4901-2582',
-  github: 'https://github.com/ShinByoungWoo',
-  company: 'codmos.io',
-  companyIntro:
-    'codmos.io (로지브라더스) — 초등 코딩·컴퓨팅 사고력 교육 에듀테크 스타트업, 900개 이상 교육기관 채택',
-  period: '2022.06 ~ 현재',
+    name: '신병우',
+    portfolioIntro: [
+        '교사·학생·운영자가 같은 데이터를 서로 다른 목적으로 사용하는 서비스에서 권한, 학습 데이터, 실시간 상태를 하나의 흐름으로 설계해 왔습니다.',
+        '화면을 만드는 데서 멈추지 않고 브라우저 보안, 콘텐츠 배포, Canvas 렌더링처럼 사용자 경험을 결정하는 화면 뒤의 문제까지 다룹니다.',
+    ],
+    resumeSummary:
+        'Vue/Nuxt와 TypeScript 기반으로 EdTech 웹 서비스와 인터랙티브 학습 콘텐츠를 개발해 온 프론트엔드 개발자입니다. 제품 운영 중 발생한 권한, 보안, 성능, 콘텐츠 파이프라인 문제를 직접 분석하고 해결했습니다.',
+    email: 'sbw0121@naver.com',
+    phone: '010-4901-2582',
+    github: 'https://github.com/ShinByoungWoo',
+    company: 'codmos.io',
+    companyIntro:
+        'codmos.io (로지브라더스) — 초등 코딩·컴퓨팅 사고력 교육 에듀테크 스타트업, 900개 이상 교육기관 채택',
+    period: '2022.06 — 현재',
 }
 
-export const heroStats = [
-  { value: '4년', label: '서비스 개발 경험' },
-  { value: 'Nuxt 3/4', label: 'Vue 기반 제품 개발' },
-  { value: '60fps', label: '렌더링 성능 개선' },
-  { value: 'CSAP', label: '보안/운영 대응' },
+export const proofPoints = [
+    {
+        value: '4+',
+        label: '제품 개발 연차',
+        detail: '2022년부터 교육 서비스와 운영 도구를 개발했습니다.',
+    },
+    {
+        value: '40→60',
+        label: 'Canvas FPS',
+        detail: '생성 비용과 렌더링 병목을 줄여 프레임을 회복했습니다.',
+    },
+    {
+        value: '900+',
+        label: '교육기관 사용 환경',
+        detail: '실제 수업과 운영이 이어지는 제품에서 일했습니다.',
+    },
+]
+
+const interactiveClips: InteractiveClip[] = [
+    {
+        id: 'typing-keys',
+        title: '한글 타자 · 자리 연습',
+        label: 'Korean IME 01',
+        src: publicAsset('assets/game_video/typing_game_finger_position_practice.mp4'),
+        description:
+            '조합 중인 한글을 완성 문자처럼 세면 정확도와 WPM이 틀어집니다. 자모 단위 입력을 해석하고 단계 전환과 결과 리포트를 같은 흐름으로 묶었습니다.',
+    },
+    {
+        id: 'typing-words',
+        title: '한글 타자 · 단어 연습',
+        label: 'Korean IME 02',
+        src: publicAsset('assets/game_video/typing_game_word.mp4'),
+        description:
+            '손가락 자리 학습 이후 실제 단어 입력으로 난이도를 전환하고, 오타·속도·완료 조건을 같은 측정 규칙으로 이어지게 했습니다.',
+    },
+    {
+        id: 'isometric',
+        title: '컨베이어 분류 게임',
+        label: 'Tilemap',
+        src: publicAsset('assets/game_video/Isometric_game.mp4'),
+        description:
+            '아이소메트릭 공간에서 분기 타일의 방향과 목적지를 상태로 관리하고, PathFollower가 선택된 경로를 따라가도록 이동 규칙을 분리했습니다.',
+    },
+    {
+        id: 'laser',
+        title: '레이저 반사 퍼즐',
+        label: 'Grid logic',
+        src: publicAsset('assets/game_video/laser_game.mp4'),
+        description:
+            '9×9 그리드에서 거울 방향에 따라 진행 벡터를 바꾸고, 충돌 지점과 배터리 도달 여부를 매 이동마다 판정하도록 구현했습니다.',
+    },
+]
+
+export const caseStudies: CaseStudy[] = [
+    {
+        id: 'product-system',
+        number: '01',
+        category: 'Product system',
+        title: '두 제품과 세 역할을 하나의 사용 원칙으로 정리했습니다.',
+        subtitle: 'CODMOS Web LMS · Admin Web v2',
+        period: '2025.09 — 2026.05',
+        summary:
+            '학생은 학습하고, 교사는 수업을 운영하며, 관리자는 기관과 콘텐츠를 관리합니다. 같은 데이터가 역할마다 다른 화면과 권한을 가져야 했기 때문에 기능 수보다 경계가 흐려지지 않는 구조가 중요했습니다.',
+        decisions: [
+            {
+                question: '왜 권한 분기를 버튼 노출 여부가 아니라 라우트 계층에서 처리했나',
+                reason:
+                    '화면에서 메뉴를 숨겨도 주소를 직접 입력하면 접근할 수 있습니다. 권한은 표현 문제가 아니라 진입 경계의 문제라고 판단했습니다.',
+                implementation:
+                    '학생·교사 경로를 분리하고 전역 미들웨어에서 역할을 검사해 강제 URL 접근을 차단했습니다. 인증 만료와 토큰 갱신도 공통 API 흐름에서 처리했습니다.',
+            },
+            {
+                question: '왜 학습 데이터를 하나의 점수로 합치지 않았나',
+                reason:
+                    '로그인해 있던 시간은 실제 학습 시간과 다르고, 빨리 푼 학생에게 긴 학습 시간을 좋은 지표로 적용할 수도 없습니다.',
+                implementation:
+                    '체류 시간과 순수 학습 시간을 분리하고, 성실도는 소요 시간이 아닌 완료 미션 수를 중심으로 읽도록 리포트 구조를 설계했습니다.',
+            },
+            {
+                question: '왜 실시간 상태를 일반 API 호출과 분리했나',
+                reason:
+                    '교사의 화면 잠금·이동 동기화와 협업 보드는 요청 이후에도 같은 교실의 사용자에게 상태가 계속 전파돼야 했습니다.',
+                implementation:
+                    'Socket.IO 연결과 클래스 입장·퇴장 생명주기를 별도 계층으로 두고, 화면에서는 수신한 이벤트를 역할별 UI 상태로 변환했습니다.',
+            },
+        ],
+        choices: [
+            {
+                name: 'Nuxt 4',
+                reason: '학생·교사 경로, 레이아웃, 미들웨어를 같은 파일 구조에서 추적하기 위해',
+            },
+            {
+                name: 'Socket.IO',
+                reason: '수업 중 화면 잠금과 동기화처럼 서버가 먼저 보내야 하는 상태를 전달하기 위해',
+            },
+        ],
+        result: {
+            value: '2 surfaces / 3 roles',
+            label: 'LMS와 운영 Admin에서 역할별 진입 경계와 데이터 흐름을 분리했습니다.',
+        },
+        resumeBullets: [
+            '학생·교사 역할별 라우팅과 강제 URL 접근 방지 미들웨어 구현',
+            '학습 시간, 완료 미션, 평가 데이터를 목적별로 구분한 AI 리포트 화면 구현',
+            '게시판·협업 보드와 교사-학생 화면 동기화를 위한 CRUD 및 실시간 이벤트 처리',
+        ],
+    },
+    {
+        id: 'security-flow',
+        number: '02',
+        category: 'Trust boundary',
+        title: '보안 요구사항을 체크리스트가 아닌 사용자 흐름으로 만들었습니다.',
+        subtitle: 'Spark EDU · CSAP 대응',
+        period: '2024.12 — 2025.08',
+        summary:
+            '보안 문서에 적힌 요구사항은 실제 로그인, 라우팅, 민감정보 전송 흐름에서 작동해야 의미가 있습니다. 공격 입력을 받는 경계와 이미 검증된 내부 흐름을 구분해 필요한 위치에만 방어 로직을 두었습니다.',
+        decisions: [
+            {
+                question: '왜 Path Traversal 대응을 라우팅 경계에서 시작했나',
+                reason:
+                    '악의적인 경로 문자열이 내부 화면 로직까지 들어온 뒤 처리하면 컴포넌트마다 방어 코드가 중복되고 빠지는 경로가 생깁니다.',
+                implementation:
+                    '외부에서 들어오는 경로를 검증하고 허용된 라우트와 역할을 통과한 요청만 화면 흐름으로 넘겼습니다.',
+            },
+            {
+                question: '왜 별도 암호화 패키지 대신 Web Crypto API를 사용했나',
+                reason:
+                    '브라우저가 제공하는 검증된 구현으로 의존성을 늘리지 않으면서, 암호화와 변조 검증을 함께 처리할 수 있었습니다.',
+                implementation:
+                    '민감정보를 전송하기 전에 AES-256-GCM으로 암호화하고, 브라우저별 인코딩 차이까지 실제 로그인 환경에서 확인했습니다.',
+            },
+            {
+                question: '왜 인증 만료를 각 페이지에서 처리하지 않았나',
+                reason:
+                    '페이지별 예외 처리는 만료된 화면이 남거나 서로 다른 로그아웃 경험을 만들 수 있습니다.',
+                implementation:
+                    '공통 인증 흐름에서 만료를 감지해 세션을 정리하고 로그인 화면으로 이동하도록 한 곳에서 처리했습니다.',
+            },
+        ],
+        choices: [
+            {
+                name: 'Web Crypto API',
+                reason: '브라우저 기본 구현으로 AES-GCM의 암호화와 인증 태그 검증을 함께 처리하기 위해',
+            },
+        ],
+        result: {
+            value: 'CSAP',
+            label: '접근 제어, 암호화, 세션 만료 요구사항을 실제 화면 경계에 연결했습니다.',
+        },
+        resumeBullets: [
+            '역할 기반 라우트 가드와 Path Traversal 공격 입력 차단',
+            'Web Crypto API 기반 AES-256-GCM 민감정보 암호화 및 브라우저 호환 이슈 대응',
+            '인증 만료 감지와 자동 로그아웃 흐름을 공통 인증 계층에 구현',
+        ],
+    },
+    {
+        id: 'content-pipeline',
+        number: '03',
+        category: 'Content delivery',
+        title: '만료되는 HTML 리소스를 다시 배포 가능한 파이프라인으로 바꿨습니다.',
+        subtitle: 'AIDT HTML 콘텐츠 · CDN 자동화',
+        period: '2024.03 — 2024.12',
+        summary:
+            '외부 도구에서 내보낸 HTML은 시간이 지나면 이미지 URL이 만료됐습니다. 이미지를 base64로 넣으면 파일이 지나치게 커졌기 때문에, 원본 HTML과 장기 운영 가능한 리소스 주소를 분리했습니다.',
+        decisions: [
+            {
+                question: '왜 이미지를 HTML 안에 base64로 넣지 않았나',
+                reason:
+                    'URL 만료 문제는 없어지지만 콘텐츠 크기가 커지고, 같은 이미지를 여러 콘텐츠가 재사용할 수 없었습니다.',
+                implementation:
+                    '이미지를 S3/CDN으로 옮기고 HTML의 리소스 경로만 CDN URL로 치환해 문서와 자산의 배포 주기를 분리했습니다.',
+            },
+            {
+                question: '왜 수작업 다운로드 대신 Puppeteer를 사용했나',
+                reason:
+                    '내보낸 HTML마다 리소스 수와 경로가 달라 사람이 확인하면 누락 여부를 보장하기 어려웠습니다.',
+                implementation:
+                    '브라우저가 실제로 요청하는 리소스를 수집해 업로드하고, 치환 결과를 다시 확인하는 반복 작업을 자동화했습니다.',
+            },
+            {
+                question: '왜 iframe 내부 상태를 postMessage로 전달했나',
+                reason:
+                    '콘텐츠와 서비스는 실행 문맥이 분리돼 있어 부모 화면이 내부 페이지 이동과 완료 상태를 직접 읽을 수 없습니다.',
+                implementation:
+                    'iframe 내부 이벤트를 명시적인 메시지 계약으로 바꾸고, 부모 서비스가 학습 진행 상태로 저장하도록 연결했습니다.',
+            },
+        ],
+        choices: [
+            {
+                name: 'Puppeteer',
+                reason: '정적 HTML 분석이 아니라 브라우저가 실제 요청한 리소스를 빠짐없이 수집하기 위해',
+            },
+            {
+                name: 'postMessage',
+                reason: '서로 분리된 iframe과 부모 서비스 사이에 허용된 상태만 전달하기 위해',
+            },
+        ],
+        result: {
+            value: 'HTML → CDN',
+            label: '만료 URL과 문서 용량 문제를 콘텐츠 업로드 과정에서 함께 제거했습니다.',
+        },
+        resumeBullets: [
+            'Puppeteer로 HTML 리소스를 수집하고 S3/CDN 업로드 및 URL 치환 자동화',
+            'base64 삽입 없이 장기 서비스 가능한 콘텐츠 자산 구조로 전환',
+            'iframe 페이지 이동과 학습 진행 상태를 postMessage로 서비스와 동기화',
+        ],
+    },
+    {
+        id: 'interactive-systems',
+        number: '04',
+        category: 'Interaction systems',
+        title: '게임을 만든 것이 아니라 입력과 렌더링 규칙을 설계했습니다.',
+        subtitle: 'Phaser · Canvas 기반 학습 콘텐츠',
+        period: '2022 — 2025',
+        summary:
+            '인터랙션이 있다는 이유만으로 게임 엔진을 사용하지 않았습니다. 충돌, Tilemap, 다수 오브젝트의 실시간 위치 계산이 필요한 콘텐츠에만 Phaser를 선택하고 HTML 중심 화면은 일반 UI로 구현하는 기준을 세웠습니다.',
+        decisions: [
+            {
+                question: '왜 모든 인터랙티브 콘텐츠를 Phaser로 만들지 않았나',
+                reason:
+                    'HTML 요소가 많은 화면까지 Canvas에 넣으면 접근성과 개발 편의가 낮아지고 DOMElement 레이어 제약이 생깁니다.',
+                implementation:
+                    '충돌·Tilemap·실시간 좌표 계산이 핵심이면 Phaser, 텍스트와 폼이 중심이면 Nuxt를 사용하는 선택 기준을 팀 문서로 정리했습니다.',
+            },
+            {
+                question: '왜 오브젝트 풀링과 이미지 리소스로 렌더링 방식을 바꿨나',
+                reason:
+                    '반복 생성·해제와 매 프레임 Graphics를 다시 그리는 비용이 모바일에서 프레임 저하로 바로 드러났습니다.',
+                implementation:
+                    '사용하지 않는 오브젝트는 비활성화해 재사용하고, 반복 도형은 미리 만든 이미지로 교체해 생성과 드로우 호출을 줄였습니다.',
+            },
+        ],
+        choices: [
+            {
+                name: 'Phaser 3',
+                reason: '충돌, Tilemap, PathFollower처럼 프레임마다 계산해야 하는 상호작용을 일관되게 관리하기 위해',
+            },
+            {
+                name: 'Canvas 2D',
+                reason: 'DOM보다 많은 오브젝트를 한 렌더링 문맥에서 갱신해야 하는 장면을 위해',
+            },
+        ],
+        result: {
+            value: '40 → 60 fps',
+            label: '생성·해제와 반복 드로우 병목을 줄여 목표 프레임을 회복했습니다.',
+        },
+        media: interactiveClips,
+        resumeBullets: [
+            'Phaser 도입 기준을 충돌·Tilemap·실시간 위치 계산 필요 여부로 명문화',
+            '오브젝트 풀링과 렌더링 리소스 전환으로 Canvas 콘텐츠 FPS 40에서 60으로 개선',
+            '한글 자모 입력, 아이소메트릭 분기, 그리드 반사 로직을 적용한 학습 콘텐츠 구현',
+        ],
+    },
 ]
 
 export const skillGroups = [
-  {
-    category: 'Frontend',
-    items: ['Vue 2/3', 'Nuxt 3/4', 'React 19', 'React Router', 'Vite', 'TypeScript', 'JavaScript', 'Pinia', 'PrimeVue', 'SCSS'],
-  },
-  {
-    category: 'Product UI',
-    items: ['권한 분기', '상태 관리', '데이터 시각화', '게시판/협업', '반응형 UI', '다국어 i18n'],
-  },
-  {
-    category: 'Game / Interactive',
-    items: ['Phaser 3', 'Canvas 2D', 'Fabric.js', 'Tilemap', 'Blockly'],
-  },
-  {
-    category: 'Editor / Content',
-    items: ['EditorJS', 'iframe', 'postMessage', 'MutationObserver'],
-  },
-  {
-    category: 'Auth / Security',
-    items: ['JWT', 'AES-256-GCM', 'Web Crypto API', 'RBAC', 'CSAP 대응'],
-  },
-  {
-    category: 'Automation / Quality',
-    items: ['Puppeteer', 'AWS S3/CDN', 'Firebase Hosting', 'Playwright', 'WCAG'],
-  },
-]
-
-export const caseStudies = [
-  {
-    id: 'codmos-lms',
-    title: 'CODMOS Web LMS',
-    subtitle: '교사·학생 학습 관리 시스템',
-    period: '2025.10 ~ 2026.03',
-    domain: 'LMS',
-    collaboration: 'Codmos Admin Web v2와 유사한 시기에 병렬로 개발한 사용자용 LMS입니다.',
-    summary:
-      'Nuxt 4 기반의 사용자별 학습 관리 서비스입니다. 역할별 화면, 학습 데이터 리포트, 게시판/협업 기능, AI 채팅 UI처럼 복잡한 상태와 권한이 얽힌 화면 흐름을 구현했습니다.',
-    problem: '역할별 접근 제어, 학습 상태, AI 리포트, 게시판/협업 기능이 한 서비스 안에서 일관되게 맞물려야 했습니다.',
-    role: '라우팅/권한 미들웨어, 학습관리 플로우, 게시판/함께보드 CRUD, AI 채팅·리포트 UI, 입력 검증과 비속어 필터링을 담당했습니다.',
-    outcomes: [
-      '학생/교사 역할별 라우팅과 강제 URL 접근 방지 미들웨어 구현',
-      '학생별 데이터를 개념/실습/평가/추천 콘텐츠 단위로 구조화한 AI 리포트 구현',
-      '게시글, 댓글, 좋아요, 이미지·파일 업로드, 권한 처리까지 포함한 협업 기능 구현',
-      'blacklist/whitelist 기반 입력 검증과 관리자 알림 페이지/API 연동',
-    ],
-    stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'EditorJS', 'Socket.io', 'Phaser 3'],
-    proof: '복잡한 사용자 역할, 데이터 상태, 협업 기능을 하나의 제품 흐름으로 연결한 대표 프로젝트입니다.',
-  },
-  {
-    id: 'admin-v2',
-    title: 'Codmos Admin Web v2',
-    subtitle: '운영 관리자 시스템',
-    period: '2025.09 ~ 2026.05',
-    domain: 'Admin',
-    collaboration: 'CODMOS Web LMS와 유사한 시기에 병렬로 개발한 운영자용 시스템입니다.',
-    summary:
-      '계정, 기관, 콘텐츠, 학습 관리 도메인을 다루는 Nuxt 4 기반 백오피스입니다. 운영자가 반복적으로 쓰는 관리 화면을 빠르고 안정적으로 구현했습니다.',
-    problem: '대용량 목록, 권한별 UI, 연동 셀렉트, 콘텐츠 관리가 운영 업무와 직접 연결되어 있어 빠른 탐색성과 안정성이 필요했습니다.',
-    role: '계정/기관/콘텐츠 CRUD, 서버사이드 페이지네이션, lazy load 드롭다운, 인증 플로우, 공통 컴포넌트를 구현했습니다.',
-    outcomes: [
-      '본부/기관/교사/학생 계정 관리 CRUD 및 권한별 UI 분기 처리',
-      '대용량 목록에 서버사이드 페이지네이션, 스켈레톤 로딩, lazy load 드롭다운 적용',
-      '기관 재계약, 플랜 선택, 지역 관리, 본부-기관 연동 셀렉트 구현',
-      'EditorJS, 다국어, 테마/다크모드, Playwright 테스트 환경 개선',
-    ],
-    stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'SCSS', 'EditorJS', 'Playwright'],
-    proof: '운영자가 매일 사용하는 백오피스의 목록, 권한, 인증, 콘텐츠 관리 경험을 보여주는 프로젝트입니다.',
-  },
-  {
-    id: 'spark-edu',
-    title: 'Spark EDU',
-    subtitle: '보안 요구사항이 강한 서비스 화면',
-    period: '2024.12 ~ 2025.07',
-    domain: 'Security',
-    summary:
-      'Nuxt 3 기반 서비스에서 KISA CSAP 클라우드 보안 인증 취득 프로젝트에 참여했습니다. 접근 제어, 인증 만료, 민감 데이터 처리, 에러 리포팅 등 보안 요구사항을 프론트엔드 코드에 반영했습니다.',
-    problem: '사용자 접근 제어, 민감 데이터 보호, 인증 만료 처리, 취약점 대응이 실제 운영 플로우와 함께 동작해야 했습니다.',
-    role: 'JWT/역할 분리 미들웨어, Path Traversal 차단, 자동 로그아웃, Web Crypto API 기반 암호화를 구현했습니다.',
-    outcomes: [
-      'JWT 및 역할 분리 미들웨어 기반 접근 제어 구현',
-      'Path Traversal 공격 차단, 인증 만료 처리, 자동 로그아웃 등 보안 레이어 개선',
-      'AES-256-GCM Web Crypto API 기반 민감 데이터 암호화 처리',
-      '웹 접근성, 로깅, 에러 리포팅 등 CSAP 요구사항 대응',
-    ],
-    stack: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Pinia', 'JWT', 'PrimeVue', 'Web Crypto API'],
-    proof: '보안 인증 요구사항을 사용자 화면과 인증 흐름에 반영한 경험입니다.',
-  },
-  {
-    id: 'canva-pipeline',
-    title: 'AIDT 콘텐츠 플랫폼',
-    subtitle: 'HTML 임베드 리소스 파이프라인',
-    period: '2024.03 ~ 2024.12',
-    domain: 'Automation',
-    summary:
-      'Canva export HTML을 iframe으로 서비스하는 환경에서 signed URL 만료로 이미지가 깨지는 문제를 CDN 파이프라인으로 해결했습니다.',
-    problem: '만료되는 이미지 URL 때문에 장기 서비스 중 콘텐츠 이미지가 깨졌고, base64 삽입은 HTML 용량을 과도하게 키웠습니다.',
-    role: 'Puppeteer 리소스 수집, AWS S3/CDN 업로드 자동화, HTML 경로 치환, iframe 진행 상태 동기화를 구현했습니다.',
-    outcomes: [
-      'Puppeteer로 HTML 내 이미지 리소스를 수집하고 AWS S3/CDN 업로드 자동화',
-      'HTML 리소스 경로를 CDN URL로 치환하여 장기 서비스 가능한 구조로 개선',
-      'MutationObserver로 동적 링크를 감지하고 외부 모달 재생 기능과 연동',
-      'iframe 내부 페이지 이동 및 진행 상태를 postMessage로 외부 웹과 동기화',
-    ],
-    stack: ['Nuxt 3', 'Puppeteer', 'AWS S3/CDN', 'iframe', 'postMessage', 'Blockly'],
-    proof: '운영 중 발생한 콘텐츠 깨짐 문제를 자동화 파이프라인으로 해결한 사례입니다.',
-  },
-  {
-    id: 'frontend-portfolio',
-    title: 'Frontend Portfolio',
-    subtitle: 'React 기반 개인 포트폴리오',
-    period: '2026.07 ~ 현재',
-    domain: 'Side Project',
-    summary: 'React 19, TypeScript, Vite 기반으로 구축한 개인 포트폴리오 및 이력서 웹사이트입니다.',
-    problem: 'Vue/Nuxt 중심의 경험을 React 기반 제품 구조로 정리하고, 프로젝트와 이력서를 하나의 공개 웹사이트에서 일관되게 보여줄 필요가 있었습니다.',
-    role: '화면 구조와 공통 UI를 설계하고, 프로젝트·경력 데이터를 분리해 관리했으며 GitHub Pages 배포와 직접 접속 처리를 구현했습니다.',
-    outcomes: [
-      '포트폴리오와 이력서를 React Router로 분리하고 GitHub Pages 배포 경로와 직접 접속 처리 구현',
-      '섹션·레이아웃·공통 UI 컴포넌트를 분리하고, 프로젝트·경력 데이터는 별도 데이터 레이어로 관리',
-      'GitHub Actions 기반 프로덕션 빌드·배포 자동화와 실제 공개 URL 운영',
-    ],
-    stack: ['React 19', 'TypeScript', 'Vite', 'React Router', 'Tailwind CSS', 'GitHub Pages'],
-    proof: 'React 기반 화면 구조, 데이터 분리, 정적 배포까지 직접 설계·구현한 사이드 프로젝트입니다.',
-  },
-  {
-    id: 'phaser-optimization',
-    title: 'Interactive Contents',
-    subtitle: 'Canvas 기반 인터랙션과 성능 개선',
-    period: '2022 ~ 2025',
-    domain: 'Interactive',
-    summary:
-      'Phaser 3, Canvas API, Blockly 기반 콘텐츠를 개발하고 성능 및 크로스 플랫폼 이슈를 개선했습니다. 렌더링, 입력, 실행 순서처럼 웹 인터랙션의 저수준 문제를 직접 다뤘습니다.',
-    problem: '모바일/태블릿에서도 안정적인 프레임과 정확한 입력·실행 흐름이 필요했습니다.',
-    role: '오브젝트 풀링, path 갱신, 렌더링 최적화, Promise 기반 Blockly 실행 제어, iOS 대응을 구현했습니다.',
-    outcomes: [
-      '종스크롤 수집형 게임에서 오브젝트 풀링을 도입해 FPS 40에서 60으로 개선',
-      'path 객체 재생성 대신 curve 좌표 직접 갱신 방식으로 프레임 연산 비용 감소',
-      'Phaser.Graphics 다중 렌더링을 이미지 리소스 방식으로 전환해 60fps 복구',
-      'Blockly 블록 순차 실행 버그를 Promise + callback resolve 패턴으로 해결',
-    ],
-    stack: ['Phaser 3', 'TypeScript', 'Canvas 2D', 'Tilemap', 'Blockly', 'Vue 2', 'SCSS'],
-    proof: '프론트엔드와 인터랙티브 콘텐츠 양쪽의 성능, 입력, 렌더링 문제 해결 경험입니다.',
-  },
-]
-
-export const achievements = [
-  {
-    title: 'Role Guard',
-    label: '권한/라우팅',
-    detail: '역할별 라우팅, 권한 분기, 강제 URL 접근 방지 미들웨어 구현',
-  },
-  {
-    title: 'Data Report',
-    label: '데이터 화면',
-    detail: '사용자별 데이터를 학습/실습/평가/추천 단위로 구조화하고 리포트 UI로 시각화',
-  },
-  {
-    title: 'Security Layer',
-    label: '보안 대응',
-    detail: 'Path Traversal 차단, 자동 로그아웃, AES-256-GCM 암호화 처리',
-  },
-  {
-    title: 'CDN Pipeline',
-    label: '자동화',
-    detail: 'HTML 리소스 수집, S3/CDN 업로드, URL 치환 자동화',
-  },
-  {
-    title: '60fps Recovery',
-    label: '성능 개선',
-    detail: '오브젝트 풀링과 렌더링 구조 개선으로 Canvas 콘텐츠 프레임 안정화',
-  },
-  {
-    title: 'Realtime UX',
-    label: '협업/채팅',
-    detail: '게시판, 협업 보드, 챗봇, 채팅 폴링 및 iOS 대응 처리',
-  },
-]
-
-export const gameShowcases: GameMeta[] = [
-  {
-    id: 'typing',
-    title: 'Typing Challenge',
-    description:
-      '한글/영문 타자 학습 콘텐츠입니다. 자모 분해 기반 WPM 계산, 정확도 측정, 단계별 문제 전환, 결과 리포트 흐름을 구현했습니다.',
-    videos: [
-      { label: '자리 연습', src: publicAsset('assets/game_video/typing_game_finger_position_practice.mp4') },
-      { label: '단어 연습', src: publicAsset('assets/game_video/typing_game_word.mp4') },
-    ],
-    tags: ['Phaser 3', 'Korean IME', 'WPM'],
-  },
-  {
-    id: 'isometric',
-    title: 'Conveyor Line',
-    description:
-      '박스를 올바른 목적지로 분류하는 컨베이어 콘텐츠입니다. 아이소메트릭 타일맵, 분기 타일 클릭, PathFollower 이동 로직을 구현했습니다.',
-    videos: [{ label: '게임 플레이', src: publicAsset('assets/game_video/Isometric_game.mp4') }],
-    tags: ['Phaser 3', 'Tilemap', 'PathFollower'],
-  },
-  {
-    id: 'spaceshooter',
-    title: 'Laser Puzzle',
-    description:
-      '레이저 발사대와 거울을 이용해 배터리를 켜는 퍼즐입니다. 9x9 그리드 이동, 거울 반사, 충돌 판정, 성공 조건 검사를 구현했습니다.',
-    videos: [{ label: '게임 플레이', src: publicAsset('assets/game_video/laser_game.mp4') }],
-    tags: ['Phaser 3', 'Algorithm', 'Grid'],
-  },
+    {
+        category: 'Product UI',
+        items: ['TypeScript', 'Vue 2/3', 'Nuxt 3/4', 'React', 'PrimeVue'],
+    },
+    {
+        category: 'Browser boundary',
+        items: ['Web Crypto API', 'iframe', 'postMessage', 'Socket.IO', 'EditorJS'],
+    },
+    {
+        category: 'Interaction',
+        items: ['Phaser 3', 'Canvas 2D', 'Tilemap', 'Fabric.js', 'Blockly'],
+    },
+    {
+        category: 'Delivery',
+        items: ['Puppeteer', 'Playwright', 'AWS S3/CDN', 'GitHub Actions'],
+    },
 ]

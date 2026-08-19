@@ -1,69 +1,44 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { profile } from '../../data/portfolio'
-import { SectionTitle } from './About'
 
 export default function Contact() {
-  return (
-    <section id="contact" className="bg-white px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
-          <motion.div
-            initial={{ opacity: 1, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.45 }}
-          >
-            <SectionTitle label="05" title="Contact" eyebrow="연락" />
-            <p className="mt-5 max-w-xl text-[18px] leading-9 text-text-muted">
-              포트폴리오에서는 프로젝트 맥락을, 이력서에서는 전체 경력을 빠르게 확인할 수 있도록 분리했습니다.
-              편한 방식으로 연락 주세요.
-            </p>
-          </motion.div>
+    return (
+        <section id="contact" className="bg-accent px-5 py-20 text-ink sm:px-8 sm:py-28">
+            <div className="mx-auto max-w-[1440px]">
+                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-ink/55">Contact</p>
+                <h2 className="mt-5 max-w-6xl text-[clamp(3rem,7.5vw,8rem)] font-black leading-[0.9] tracking-[-0.07em]">
+                    제품의 복잡한 경계를 함께 정리할 팀을 찾고 있습니다.
+                </h2>
 
-          <motion.div
-            initial={{ opacity: 1, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.45, delay: 0.08 }}
-            className="grid gap-3"
-          >
-            <a
-              href={`mailto:${profile.email}`}
-              className="rounded-lg border border-border bg-bg p-6 transition-colors hover:border-primary"
-            >
-              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-text-muted">Email</p>
-              <p className="mt-2 text-xl font-bold text-text-heading">{profile.email}</p>
-            </a>
+                <div className="mt-16 grid gap-10 border-t-4 border-ink pt-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-20">
+                    <a
+                        href={`mailto:${profile.email}`}
+                        className="group block max-w-max break-all text-2xl font-black tracking-[-0.035em] underline decoration-2 underline-offset-8 transition-colors hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-ink sm:text-4xl"
+                    >
+                        {profile.email}
+                        <span className="ml-3 inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">
+                            ↗
+                        </span>
+                    </a>
 
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-lg border border-border bg-bg p-6 transition-colors hover:border-primary"
-            >
-              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-text-muted">GitHub</p>
-              <p className="mt-2 text-xl font-bold text-text-heading">github.com/ShinByoungWoo</p>
-            </a>
-
-            <a
-              href={`tel:${profile.phone.replaceAll('-', '')}`}
-              className="rounded-lg border border-border bg-bg p-6 transition-colors hover:border-primary"
-            >
-              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-text-muted">Phone</p>
-              <p className="mt-2 text-xl font-bold text-text-heading">{profile.phone}</p>
-            </a>
-
-            <Link
-              to="/resume"
-              className="rounded-lg border border-border bg-text-heading p-6 text-white transition-opacity hover:opacity-90"
-            >
-              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-white/55">Resume</p>
-              <p className="mt-2 text-xl font-bold">이력서 화면으로 이동</p>
-            </Link>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  )
+                    <div className="flex flex-col gap-4 text-[13px] font-black">
+                        <a
+                            href={profile.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="border-b border-ink/40 pb-3 transition-colors hover:border-paper hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                        >
+                            GitHub ↗
+                        </a>
+                        <Link
+                            to="/resume"
+                            className="border-b border-ink/40 pb-3 transition-colors hover:border-paper hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                        >
+                            이력서 읽기 ↗
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
 }

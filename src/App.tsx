@@ -1,42 +1,42 @@
-import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Header from './components/layout/Header'
-import Hero from './components/sections/Hero'
-import About from './components/sections/About'
-import Projects from './components/sections/Projects'
-import Achievements from './components/sections/Achievements'
-import GameShowcase from './components/sections/GameShowcase'
 import Contact from './components/sections/Contact'
-import PageNavigator from './components/ui/PageNavigator'
+import Experience from './components/sections/Experience'
+import Hero from './components/sections/Hero'
+import Projects from './components/sections/Projects'
 import Resume from './pages/Resume'
 
 function Portfolio() {
-  return (
-    <>
-      <Header />
-      <PageNavigator />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Achievements />
-        <GameShowcase />
-        <Contact />
-      </main>
-      <footer className="py-8 border-t border-border">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col gap-2 text-[14px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 신병우</span>
-          <span>React · TypeScript · Vite</span>
-        </div>
-      </footer>
-    </>
-  )
+    return (
+        <>
+            <Header />
+            <main>
+                <Hero />
+                <Projects />
+                <Experience />
+                <Contact />
+            </main>
+            <footer className="border-t border-paper/20 bg-ink px-5 py-7 text-paper/45 sm:px-8">
+                <p className="mx-auto max-w-[1440px] text-[11px] font-bold uppercase tracking-[0.16em]">
+                    <span>© 2026 Shin Byoungwoo</span>
+                </p>
+            </footer>
+        </>
+    )
 }
 
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Portfolio />} />
-      <Route path="/resume" element={<Resume />} />
-    </Routes>
-  )
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
+
+    return (
+        <Routes>
+            <Route path="/" element={<Portfolio />} />
+            <Route path="/resume" element={<Resume />} />
+        </Routes>
+    )
 }
