@@ -3,7 +3,7 @@ import { profile } from '../../data/portfolio'
 const boundaries = [
     {
         label: 'Product surfaces',
-        title: '학생 · 교사 · 운영자',
+        title: '역할 · 데이터 · 작업 흐름',
         description: '같은 데이터가 역할마다 다른 목적과 권한을 가질 때, 화면보다 먼저 진입 경계와 작업 순서를 정리합니다.',
     },
     {
@@ -48,9 +48,9 @@ export default function Experience() {
                         </div>
 
                         <p className="mt-8 max-w-4xl text-[17px] leading-8 text-paper/68">
-                            LMS와 운영 Admin을 병렬로 개발하고, 그 이전에는 보안 인증 대응과 Canvas 기반 학습 콘텐츠,
-                            HTML 콘텐츠 배포 자동화를 맡았습니다. 기능 종류는 달랐지만 역할 경계와 브라우저 동작을 명시적으로
-                            만드는 일은 계속 이어졌습니다.
+                            사용자 서비스와 운영 도구를 병렬로 개발하며 역할 기반 접근 제어, 데이터 리포트, 실시간 협업 기능을
+                            구현했습니다. 화면 구현에 그치지 않고 보안 인증, 콘텐츠 배포 자동화, Canvas 성능 개선까지
+                            브라우저에서 이어지는 문제를 맡았습니다.
                         </p>
                     </div>
                 </div>
