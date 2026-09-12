@@ -13,11 +13,11 @@ export const profile = {
     email: 'sbw0121@naver.com',
     phone: '010-4901-2582',
     github: 'https://github.com/ShinByoungWoo',
-    company: '로지브라더스 · CODMOS',
+    company: '로지브라더스 - CODMOS',
     companyIntro:
         '코딩·AI 교육 서비스 CODMOS를 개발·운영하는 에듀테크 기업입니다. 블록 코딩과 인터랙티브 학습 콘텐츠, 교사의 수업 준비·진도 관리를 지원하는 학교용 서비스를 제공합니다.',
     companySource: 'https://school.codmos.io/',
-    period: '2022.06 — 현재',
+    period: '2022.06 - 현재',
     role: '프론트엔드 개발자',
     team: 'LMS·Admin 프론트엔드 3명',
 }
@@ -29,7 +29,7 @@ export const experienceBullets = [
 ]
 
 export const education = [
-    { school: '한국방송통신대학교', detail: '재학 중' },
+    { school: '한국방송통신대학교', detail: '2025학번 - 재학 중' },
     { school: '전남과학대학교', detail: '호텔관광학과 졸업' },
 ]
 
@@ -42,19 +42,19 @@ export const proofPoints = [
     {
         value: '3개 역할',
         label: '사용자 관점',
-        detail: '학생·교사·운영자의 서로 다른 학습·관리 흐름을 구현했습니다.',
+        detail: '학생, 교사, 운영자의 서로 다른 학습 및 관리 흐름을 구현했습니다.',
     },
     {
-        value: 'LMS · Admin',
+        value: 'LMS / Admin',
         label: '제품 개발·운영',
-        detail: '프론트엔드 3명 중 코스·리포트·게시판과 계정 관리 화면을 담당했습니다.',
+        detail: '프론트엔드 3명 중 코스, 리포트, 게시판과 계정 관리 화면을 담당했습니다.',
     },
 ]
 
 const interactiveClips: InteractiveClip[] = [
     {
         id: 'typing-keys',
-        title: '한글 타자 · 자리 연습',
+        title: '한글 타자 - 자리 연습',
         label: 'Korean IME 01',
         src: publicAsset('assets/game_video/typing_game_finger_position_practice.mp4'),
         description:
@@ -62,7 +62,7 @@ const interactiveClips: InteractiveClip[] = [
     },
     {
         id: 'typing-words',
-        title: '한글 타자 · 단어 연습',
+        title: '한글 타자 - 단어 연습',
         label: 'Korean IME 02',
         src: publicAsset('assets/game_video/typing_game_word.mp4'),
         description:
@@ -93,7 +93,7 @@ export const caseStudies: CaseStudy[] = [
         category: 'Partner integration',
         title: '파트너별 진입과 콘텐츠 이어하기 흐름을 연결했습니다.',
         subtitle: 'Codmos Partner Web',
-        period: '2026.06 — 2026.07',
+        period: '2026.06 - 2026.07',
         scope: '파트너별 라우팅, 신규·이어하기 상태, iframe 진행 상태 연동 담당.',
         summary: '파트너별 진입 경로에서 학습 콘텐츠를 실행하는 서비스입니다. 파트너와 콘텐츠를 경로로 구분하고, 신규 학습과 중단한 미션의 재개 흐름을 연결했습니다.',
         decisions: [
@@ -109,11 +109,11 @@ export const caseStudies: CaseStudy[] = [
             },
         ],
         choices: [
-            { name: 'Nuxt · Pinia', reason: '파트너·콘텐츠 경로와 학습 진입 상태를 관리' },
+            { name: 'Nuxt / Pinia', reason: '파트너·콘텐츠 경로와 학습 진입 상태를 관리' },
             { name: 'postMessage', reason: 'iframe 콘텐츠와 부모 화면 사이의 상태를 전달' },
         ],
         result: {
-            value: '신규 학습 · 이어하기',
+            value: '신규 학습 / 이어하기',
             label: '파트너별 진입 경로에서 콘텐츠 실행·재개와 iframe 상태 표시를 연결했습니다.',
         },
         resumeBullets: [
@@ -128,7 +128,7 @@ export const caseStudies: CaseStudy[] = [
         category: 'Product system',
         title: '코스·리포트·게시판을 수업의 흐름에 맞게 연결했습니다.',
         subtitle: 'CODMOS Web LMS',
-        period: '2025.09 — 현재',
+        period: '2025.09 - 현재',
         scope: '프론트엔드 3명 중 코스·학습 리포트·학습게시판·클럽보드 화면과 API 연동 담당. 2026년 1~3월 주요 기능 개발, 이후 QA·CS 대응.',
         summary:
             '교사와 학생이 코스, 학습 리포트, 게시판을 오가며 수업을 진행하는 LMS입니다. 화면 이동 시 선택한 단원과 학습 상태가 이어지고, 수업에 늦게 입장해도 교사의 동기화 상태를 반영해야 했습니다.',
@@ -152,27 +152,26 @@ export const caseStudies: CaseStudy[] = [
                 reason:
                     '입장 이후의 이벤트만 수신하면 교사가 이미 설정한 화면 잠금과 이동 상태를 놓칠 수 있었습니다.',
                 implementation:
-                    '클래스 입장 응답의 lockStatus와 syncStatus를 읽어 초기 잠금 상태와 이동 경로를 반영했습니다. 학습게시판·클럽보드의 API, 파일 업로드, 수정·삭제 권한 UI도 연동했습니다.',
+                    '클래스 입장 응답의 lockStatus와 syncStatus를 읽어 초기 잠금 상태와 이동 경로를 반영했습니다. 학습게시판과 클럽보드는 Socket.IO 이벤트, API, 파일 업로드, 수정·삭제 권한 UI를 함께 연동했습니다.',
             },
         ],
         choices: [
             {
-                name: 'Nuxt · Pinia',
+                name: 'Nuxt / Pinia',
                 reason: '교사·학생 화면의 경로를 구분하고 페이지 간 공유할 리포트 상태를 관리',
             },
             {
                 name: 'Socket.IO',
-                reason: '수업 중 화면 잠금과 동기화처럼 서버가 먼저 보내야 하는 상태를 전달하기 위해',
+                reason: '수업 중 화면 잠금과 동기화, 학습게시판과 클럽보드의 실시간 변경처럼 서버가 먼저 보내야 하는 상태를 전달하기 위해',
             },
         ],
         result: {
-            value: '코스 ↔ 리포트',
-            label: '페이지 이동 시 선택 상태를 유지하고, 수업 입장 시 기존 잠금·동기화 상태를 반영했습니다.',
+            value: '학습 흐름과 실시간 수업 연결',
+            label: '페이지 이동 시 선택 상태를 유지하고, 수업 입장과 게시판에서 Socket.IO 기반 실시간 상태를 반영했습니다.',
         },
         resumeBullets: [
             '화면 이동 시 학습 상태 유지: 리포트 상태를 Pinia 스토어로 옮겨 코스와 리포트 사이에서 선택한 단원을 유지하고, 새로고침·단원 변경 시 표시 데이터가 어긋나는 문제를 수정했습니다.',
-            '리포트 생성 결과 갱신: 비동기로 생성되는 리포트의 상태를 폴링으로 조회하고, 재시작 시 갱신이 이어지도록 처리했습니다.',
-            '수업 참여 기능 개발: 학습게시판·클럽보드에 에디터와 파일 업로드를 연동했습니다. 수업에 늦게 입장한 학생에게도 기존 화면 잠금·동기화 상태가 적용되도록 초기 응답을 반영했습니다.',
+            '리포트와 실시간 수업 연결: 비동기 리포트 결과를 폴링으로 갱신하고, 학습게시판·클럽보드의 Socket.IO 이벤트와 에디터·파일 업로드를 연동했습니다. 늦게 입장한 학생에게도 기존 화면 잠금과 동기화 상태가 적용되도록 초기 응답을 반영했습니다.',
         ],
     },
     {
@@ -181,7 +180,7 @@ export const caseStudies: CaseStudy[] = [
         category: 'Admin operations',
         title: '계정 목록부터 등록·상세·수정까지 운영 화면을 개발했습니다.',
         subtitle: 'CODMOS Admin Web v2',
-        period: '2025.09 — 현재',
+        period: '2025.09 - 현재',
         scope: '프론트엔드 3명 중 계정 목록·등록·상세·수정 화면과 API 연동 담당. 2026년 1~3월 목록·폼 개선, 이후 QA·CS 대응.',
         summary: '본부·기관·교사·학생 등 계정 유형마다 입력 조건과 조회 범위가 다른 운영 도구입니다. 계정 관리 화면과 API를 연결하고, 목록 조회 및 기관 선택 방식을 개선했습니다.',
         decisions: [
@@ -202,12 +201,12 @@ export const caseStudies: CaseStudy[] = [
             },
         ],
         choices: [
-            { name: 'Nuxt · TypeScript', reason: '계정 유형별 페이지와 API 데이터 모델을 관리' },
-            { name: 'PrimeVue', reason: '테이블·페이지네이션·폼·기관 선택 UI를 구성' },
+            { name: 'Nuxt / TypeScript', reason: '계정 유형별 페이지와 API 데이터 모델을 관리' },
+            { name: 'PrimeVue', reason: '테이블, 페이지네이션, 폼, 기관 선택 UI를 구성' },
         ],
         result: {
-            value: '서버 페이지네이션',
-            label: '계정 목록의 조회·검색·페이지 이동을 서버 응답 기준으로 전환하고, 기관 선택 UI의 표시 범위를 나눴습니다.',
+            value: '6개 계정 목록의 조회 흐름 개선',
+            label: '검색, 페이지 이동, 기관 선택이 데이터 규모와 관계없이 일관되게 동작하도록 조회 흐름을 정리했습니다.',
         },
         resumeBullets: [
             '계정 유형별 관리 화면 개발: 본부·기관·교사·학생의 등록·상세·수정 화면을 API와 연결하고, 유형마다 다른 입력 조건과 유효성 검사를 반영했습니다.',
@@ -220,8 +219,8 @@ export const caseStudies: CaseStudy[] = [
         number: '04',
         category: 'Trust boundary',
         title: '접근 권한과 세션 만료에 따른 화면 처리를 정리했습니다.',
-        subtitle: 'Spark EDU · CSAP 대응',
-        period: '2024.12 — 2025.07',
+        subtitle: 'Spark EDU - CSAP 대응',
+        period: '2024.12 - 2025.07',
         summary:
             'CSAP 대응 과정에서 프론트엔드의 라우트 접근 처리와 세션 만료 흐름을 구현했습니다. 페이지별 예외 처리 대신 공통 인증 흐름으로 연결했습니다.',
         decisions: [
@@ -247,7 +246,7 @@ export const caseStudies: CaseStudy[] = [
             },
         ],
         result: {
-            value: '라우트 · 세션',
+            value: '라우트 / 세션',
             label: 'CSAP 대응 중 프론트엔드 접근 처리와 세션 만료 흐름을 구현했습니다.',
         },
         resumeBullets: [
@@ -260,8 +259,8 @@ export const caseStudies: CaseStudy[] = [
         number: '05',
         category: 'Content delivery',
         title: '다양한 학습 콘텐츠를 CMS에 모으고 등록 과정을 자동화했습니다.',
-        subtitle: 'CODMOS CMS · 콘텐츠 통합·Canva 등록',
-        period: '2026.03 — 2026.06',
+        subtitle: 'CODMOS CMS - 콘텐츠 통합 및 Canva 등록',
+        period: '2026.03 - 2026.06',
         scope: '팀의 콘텐츠 통합 작업에 참여. 콘텐츠 이관·등록과 Canva HTML 수집·가공 스크립트 및 다중 등록 기능 담당.',
         summary:
             'Phaser 3, CreateJS, Vue·SVG 등 서로 다른 방식으로 만든 학습 콘텐츠를 CMS에서 유형별로 모아 관리하는 작업입니다. S3 업로드와 CDN 실행 구조 안에서 콘텐츠를 이관·등록하고 Canva HTML 처리 과정을 자동화했습니다.',
@@ -299,7 +298,7 @@ export const caseStudies: CaseStudy[] = [
             },
         ],
         result: {
-            value: '콘텐츠 통합 · 다중 등록',
+            value: '콘텐츠 통합 / 다중 등록',
             label: 'CMS에 콘텐츠를 통합 등록하고, Canva HTML 수집·이미지 가공·언어별 등록을 스크립트로 처리하도록 구현했습니다.',
         },
         resumeBullets: [
@@ -313,8 +312,8 @@ export const caseStudies: CaseStudy[] = [
         number: '06',
         category: 'Interaction systems',
         title: '학습 콘텐츠의 입력과 렌더링 동작을 구현했습니다.',
-        subtitle: 'Phaser · Canvas 기반 학습 콘텐츠',
-        period: '2022.06 — 2026.05',
+        subtitle: 'Phaser / Canvas 기반 학습 콘텐츠',
+        period: '2022.06 - 2026.05',
         summary:
             '타자 연습과 퍼즐 등 학생이 직접 조작하는 학습 콘텐츠를 개발했습니다. 한글 입력을 해석하고 게임의 이동·충돌 규칙을 구현하는 작업과 함께, 반복 생성과 그리기로 발생하는 렌더링 비용을 개선했습니다.',
         decisions: [
@@ -344,7 +343,7 @@ export const caseStudies: CaseStudy[] = [
             },
         ],
         result: {
-            value: '입력 · 렌더링 개선',
+            value: '입력 / 렌더링 개선',
             label: '학습 콘텐츠의 입력·이동 규칙을 구현하고, 오브젝트 재사용과 이미지 리소스 전환으로 반복 생성·그리기 비용을 줄였습니다.',
         },
         media: interactiveClips,

@@ -9,7 +9,7 @@ export default function Hero() {
                     <div>
                         <p className="mb-7 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.22em] text-accent">
                             <span className="h-2 w-2 bg-accent" aria-hidden="true" />
-                            Frontend engineer · Seoul
+                            Frontend engineer - Seoul
                         </p>
 
                         <h1 className="max-w-5xl text-[clamp(2.5rem,5.2vw,4.5rem)] font-black leading-[1.15] tracking-[-0.05em] text-ink">

@@ -4,9 +4,9 @@ import type { InteractiveClip } from '../../types'
 import ProjectEvidence from './ProjectEvidence'
 
 const productMap = [
-    { user: '학생', flow: '학습 콘텐츠 · 이어하기', project: 'LMS · Canvas' },
-    { user: '교사', flow: '코스 · 리포트 · 수업 제어', project: 'Web LMS' },
-    { user: '운영자', flow: '계정 · 콘텐츠 등록', project: 'Admin · CMS' },
+    { user: '학생', flow: '학습 콘텐츠 → 이어하기', project: 'LMS / Canvas' },
+    { user: '교사', flow: '코스 → 리포트 → 수업 제어', project: 'Web LMS' },
+    { user: '운영자', flow: '계정 관리 → 콘텐츠 등록', project: 'Admin / CMS' },
 ]
 
 export default function Projects() {
@@ -196,8 +196,17 @@ function InteractiveMedia({ clips }: { clips: InteractiveClip[] }) {
                         key={activeClip.src}
                         src={activeClip.src}
                         controls
+                        muted
                         playsInline
                         preload="metadata"
+                        onLoadedMetadata={event => {
+                            event.currentTarget.volume = 0.1
+                        }}
+                        onVolumeChange={event => {
+                            if (!event.currentTarget.muted && event.currentTarget.volume > 0.1) {
+                                event.currentTarget.volume = 0.1
+                            }
+                        }}
                         className="aspect-video h-full w-full bg-black object-contain"
                     />
                 </div>

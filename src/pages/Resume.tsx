@@ -130,7 +130,7 @@ export default function Resume() {
                                 {skillGroups.map(group => (
                                     <div key={group.category}>
                                         <p className="text-[12px] font-black">{group.category}</p>
-                                        <p className="mt-1 text-[12px] leading-5 text-ink/58">{group.items.join(' · ')}</p>
+                                        <p className="mt-1 text-[12px] leading-5 text-ink/58">{group.items.join(', ')}</p>
                                     </div>
                                 ))}
                             </div>

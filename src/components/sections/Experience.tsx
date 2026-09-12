@@ -3,17 +3,17 @@ import { experienceBullets, profile } from '../../data/portfolio'
 const boundaries = [
     {
         label: 'Product surfaces',
-        title: '역할 · 데이터 · 작업 흐름',
+        title: '역할, 데이터, 작업 흐름',
         description: '같은 데이터가 역할마다 다른 목적과 권한을 가질 때, 화면보다 먼저 진입 경계와 작업 순서를 정리합니다.',
     },
     {
         label: 'Product operations',
-        title: '상태 유지 · 목록 조회 · QA',
+        title: '상태 유지, 목록 조회, QA',
         description: '페이지 이동과 새로고침, 계정 목록 검색, 수업 입장처럼 실제 사용 중 생기는 데이터·화면 상태 이슈를 수정합니다.',
     },
     {
         label: 'Interaction systems',
-        title: '입력 · 좌표 · 렌더링',
+        title: '입력, 좌표, 렌더링',
         description: '한글 조합 입력부터 Canvas 프레임까지 사용자가 바로 체감하는 저수준 동작을 측정하고 조정합니다.',
     },
 ]
@@ -34,7 +34,7 @@ export default function Experience() {
 
                 <div className="grid border-b border-paper/25 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
                     <div className="border-b border-paper/20 py-10 lg:border-b-0 lg:py-14">
-                        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-paper/40">2022.06 — Now</p>
+                        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-paper/40">2022.06 - Now</p>
                         <p className="mt-4 text-5xl font-black tracking-[-0.06em] text-accent">4+ years</p>
                     </div>
 
