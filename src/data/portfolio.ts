@@ -33,25 +33,6 @@ export const education = [
     { school: '전남과학대학교', detail: '호텔관광학과 졸업' },
 ]
 
-export const aiExperience = {
-    summary:
-        'OpenAI Codex를 레포지토리 탐색, 영향 범위 분석, 반복 구현과 검증에 활용합니다. 생성 결과를 그대로 반영하지 않고 변경 내용을 직접 검토한 뒤 실행 결과로 확인합니다.',
-    steps: [
-        {
-            title: '코드 탐색',
-            description: '여러 레포의 커밋 이력과 라우트, 상태, API 흐름을 함께 추적해 작업 범위와 연관 코드를 파악합니다.',
-        },
-        {
-            title: '구현과 정리',
-            description: '요구사항을 작은 변경 단위로 나누고 반복 코드 정리, 문구와 문서 초안, 대안 비교에 활용합니다.',
-        },
-        {
-            title: '직접 검증',
-            description: 'Git diff를 검토하고 lint, build, 브라우저 시나리오를 실행해 의도한 동작인지 확인한 뒤 반영합니다.',
-        },
-    ],
-}
-
 export const proofPoints = [
     {
         value: '4+',
@@ -393,10 +374,6 @@ export const skillGroups = [
     {
         category: '테스트',
         items: ['Playwright'],
-    },
-    {
-        category: 'AI 개발 도구',
-        items: ['OpenAI Codex'],
     },
 ]
 
