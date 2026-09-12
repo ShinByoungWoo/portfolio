@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { caseStudies, education, experienceBullets, profile, proofPoints, skillGroups } from '../data/portfolio'
+import { additionalCaseStudies, education, experienceBullets, featuredCaseStudies, profile, proofPoints, skillGroups } from '../data/portfolio'
 
 export default function Resume() {
     return (
@@ -83,7 +83,7 @@ export default function Resume() {
 
                     <ResumeSection title="주요 프로젝트">
                         <div className="space-y-9 print:space-y-7">
-                            {caseStudies.map(project => (
+                            {featuredCaseStudies.map(project => (
                                 <article key={project.id} className="break-inside-avoid border-t border-ink/25 pt-6 first:border-t-0 first:pt-0">
                                     <header className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between print:flex-row print:items-start print:justify-between">
                                         <div>
@@ -99,12 +99,26 @@ export default function Resume() {
                                     <dl className="mt-5 space-y-4 print:mt-4 print:space-y-3">
                                         <ResumeDetail label="핵심 기여">
                                             <ul className="space-y-2">
-                                                {project.resumeBullets.map(bullet => (
+                                                {project.resumeBullets.slice(0, 2).map(bullet => (
                                                     <ResumeBullet key={bullet}>{bullet}</ResumeBullet>
                                                 ))}
                                             </ul>
                                         </ResumeDetail>
                                     </dl>
+                                </article>
+                            ))}
+                        </div>
+                    </ResumeSection>
+
+                    <ResumeSection title="추가 경험">
+                        <div className="grid gap-4 sm:grid-cols-2 print:grid-cols-2">
+                            {additionalCaseStudies.map(project => (
+                                <article key={project.id} className="break-inside-avoid border-l-2 border-accent pl-4">
+                                    <div className="flex items-start justify-between gap-3">
+                                        <h3 className="text-[13px] font-black">{project.subtitle}</h3>
+                                        <p className="shrink-0 text-[11px] font-bold text-ink/40">{project.period}</p>
+                                    </div>
+                                    <p className="mt-2 text-[12px] leading-5 text-ink/62">{project.resumeBullets[0]}</p>
                                 </article>
                             ))}
                         </div>

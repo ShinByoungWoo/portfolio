@@ -40,9 +40,9 @@ export const proofPoints = [
         detail: '2022년부터 사용자 서비스와 운영 도구를 개발했습니다.',
     },
     {
-        value: 'Canvas',
-        label: '학습 인터랙션',
-        detail: '한글 입력과 좌표·충돌 처리, 렌더링 개선을 경험했습니다.',
+        value: '3개 역할',
+        label: '사용자 관점',
+        detail: '학생·교사·운영자의 서로 다른 학습·관리 흐름을 구현했습니다.',
     },
     {
         value: 'LMS · Admin',
@@ -211,7 +211,7 @@ export const caseStudies: CaseStudy[] = [
         },
         resumeBullets: [
             '계정 유형별 관리 화면 개발: 본부·기관·교사·학생의 등록·상세·수정 화면을 API와 연결하고, 유형마다 다른 입력 조건과 유효성 검사를 반영했습니다.',
-            '목록 조회 방식 개선: 검색·페이지 이동을 서버 응답 기준으로 전환했습니다. 검색 조건 변경 시 첫 페이지로 이동하고, 연속 입력에는 디바운스를 적용했습니다.',
+            '목록 조회 방식 개선: 계정 목록 화면 6개와 API 모듈 3개를 서버 페이지네이션 기준으로 전환했습니다. 검색 조건 변경 시 첫 페이지로 이동하고, 연속 입력에는 디바운스를 적용했습니다.',
             '긴 기관 목록의 선택 UI 개선: 가상 스크롤과 100개 단위 점진 표시를 적용했습니다. 수정 화면의 기존 선택 기관이 초기 표시 범위 밖에 있어도 이름을 확인하도록 보완했습니다.',
         ],
     },
@@ -304,7 +304,7 @@ export const caseStudies: CaseStudy[] = [
         },
         resumeBullets: [
             '콘텐츠 통합 관리에 참여: Phaser·CreateJS·Vue 등으로 개별 제작한 콘텐츠를 CMS에 이관·등록하고, 기존 콘텐츠의 실행과 학습 저장 연동을 수정했습니다.',
-            '등록 준비 작업 자동화: Puppeteer로 Canva HTML을 수집하고 이미지 다운로드·WebP 변환·배포 경로 치환을 처리하는 스크립트를 작성했습니다. 이후 여러 콘텐츠를 한 번에 등록하도록 확장했습니다.',
+            '등록 준비 작업 자동화: Puppeteer로 Canva HTML 수집, 이미지 다운로드·WebP 변환·배포 경로 치환을 처리하고 다중 등록으로 확장했습니다. 초기 등록 샘플의 Git 스냅샷에서 15개 언어별 산출물과 253개 WebP 이미지 자산을 확인했습니다.',
             '학습 서비스와 실행 콘텐츠 연결: 언어별 HTML 선택과 iframe의 페이지 이동·완료 이벤트 전달을 구현하고, 기존 S3/CDN 배포 흐름에 연결했습니다.',
         ],
     },
@@ -377,3 +377,15 @@ export const skillGroups = [
         items: ['Playwright'],
     },
 ]
+
+const featuredProjectIds = ['product-system', 'admin-operations', 'content-pipeline', 'interactive-systems']
+
+export const featuredCaseStudies = featuredProjectIds.map((id, index) => {
+    const project = caseStudies.find(item => item.id === id)
+    if (!project) throw new Error(`Missing featured case study: ${id}`)
+    return { ...project, number: String(index + 1).padStart(2, '0') }
+})
+
+export const additionalCaseStudies = caseStudies.filter(project =>
+    ['partner-web', 'security-flow'].includes(project.id),
+)
