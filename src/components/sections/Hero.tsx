@@ -13,8 +13,8 @@ export default function Hero() {
                         </p>
 
                         <h1 className="max-w-5xl text-[clamp(2.5rem,5.2vw,4.5rem)] font-black leading-[1.15] tracking-[-0.05em] text-ink">
-                            제품의 복잡도를
-                            <span className="block text-accent">사용자의 흐름으로.</span>
+                            학습의 경험부터
+                            <span className="block text-accent">서비스 운영까지.</span>
                         </h1>
                     </div>
 
@@ -27,7 +27,7 @@ export default function Hero() {
                         </p>
                         <p className="mt-1 text-[14px] font-bold text-accent">{profile.period}</p>
                         <p className="mt-6 text-[16px] leading-7 text-ink/70">
-                            코스·학습 리포트부터 계정 관리까지, 제품 화면의 개발과 운영 이슈 대응을 맡았습니다.
+                            코딩·AI 교육 서비스의 프론트엔드를 개발하고 있습니다.
                         </p>
                     </aside>
                 </div>

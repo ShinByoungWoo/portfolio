@@ -27,9 +27,9 @@ export default function Resume() {
                         <div>
                             <p className="text-[12px] font-black uppercase tracking-[0.16em] text-accent">Frontend Engineer</p>
                             <h1 className="mt-2 text-4xl font-black tracking-[-0.055em] sm:text-5xl print:text-4xl">{profile.name}</h1>
-                            <p className="mt-5 max-w-2xl text-[14px] leading-7 text-ink/70 print:mt-4 print:leading-6">
-                                {profile.resumeSummary}
-                            </p>
+                            <div className="mt-5 max-w-2xl space-y-3 text-[14px] leading-7 text-ink/70 print:mt-4 print:leading-6">
+                                {profile.portfolioIntro.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+                            </div>
                         </div>
 
                         <address className="flex flex-col items-start gap-1 text-[13px] not-italic md:items-end md:text-right print:items-end print:text-right">
@@ -71,6 +71,7 @@ export default function Resume() {
                             </div>
                             <div>
                                 <p className="text-[13px] leading-6 text-ink/65">{profile.companyIntro}</p>
+                                <a href={profile.companySource} target="_blank" rel="noreferrer" className="mt-2 inline-block text-[12px] text-ink/65 underline underline-offset-4">공식 서비스 소개 ↗</a>
                                 <ul className="mt-4 space-y-2.5">
                                     {experienceBullets.map(bullet => (
                                         <ResumeBullet key={bullet}>{bullet}</ResumeBullet>
@@ -102,12 +103,6 @@ export default function Resume() {
                                                     <ResumeBullet key={bullet}>{bullet}</ResumeBullet>
                                                 ))}
                                             </ul>
-                                        </ResumeDetail>
-                                        <ResumeDetail label="결과">
-                                            <p>
-                                                <strong className="mr-2 font-black text-accent">{project.result.value}</strong>
-                                                {project.result.label}
-                                            </p>
                                         </ResumeDetail>
                                     </dl>
                                 </article>

@@ -20,6 +20,7 @@ const lines = [
     profile.period,
     '',
     profile.companyIntro,
+    `회사 소개 출처: [CODMOS 공식 서비스 소개](${profile.companySource})`,
     '',
     ...experienceBullets.map(bullet => `- ${bullet}`),
     '',
@@ -31,7 +32,7 @@ for (const project of caseStudies) {
     lines.push(`### ${project.subtitle}`, '', project.period, '')
     if (project.scope) lines.push(project.scope, '')
     lines.push(...project.resumeBullets.map(bullet => `- ${bullet}`))
-    lines.push('', `결과: ${project.result.value} — ${project.result.label}`, '')
+    lines.push('')
 }
 
 lines.push('## 기술', '')

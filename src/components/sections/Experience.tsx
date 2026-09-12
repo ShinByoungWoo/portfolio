@@ -1,4 +1,4 @@
-import { profile } from '../../data/portfolio'
+import { experienceBullets, profile } from '../../data/portfolio'
 
 const boundaries = [
     {
@@ -28,7 +28,7 @@ export default function Experience() {
                         <h2 className="mt-3 text-[32px] font-black tracking-[-0.04em] sm:text-[40px]">경력과 범위</h2>
                     </div>
                     <p className="max-w-3xl text-xl font-bold leading-8 tracking-[-0.025em] text-paper/88 lg:justify-self-end sm:text-2xl sm:leading-9">
-                        프레임워크보다 제품의 경계에서 반복해서 해결한 문제로 경험을 설명합니다.
+                        학습 콘텐츠 제작부터 서비스 개발과 운영까지 경험했습니다.
                     </p>
                 </header>
 
@@ -44,14 +44,15 @@ export default function Experience() {
                                 <h3 className="text-3xl font-black tracking-[-0.045em] sm:text-4xl">{profile.company}</h3>
                                 <p className="mt-2 text-[14px] font-bold text-accent">Frontend Engineer</p>
                             </div>
-                            <p className="max-w-md text-[14px] leading-6 text-paper/48 sm:text-right">{profile.companyIntro}</p>
+                            <div className="max-w-md text-[14px] leading-6 text-paper/65 sm:text-right">
+                                <p>{profile.companyIntro}</p>
+                                <a href={profile.companySource} target="_blank" rel="noreferrer" className="mt-2 inline-block underline underline-offset-4">공식 서비스 소개 ↗</a>
+                            </div>
                         </div>
 
-                        <p className="mt-8 max-w-4xl text-[17px] leading-8 text-paper/68">
-                            LMS·Admin 프론트엔드 3명 중 코스·학습 리포트·게시판과 계정 관리 화면을 담당했습니다.
-                            2026년 1~3월 주요 기능 개발 이후 QA·CS 대응을 이어갔으며, 콘텐츠 CMS 통합 과정의
-                            콘텐츠 등록·Canva HTML 가공과 인터랙티브 콘텐츠 개발에도 참여했습니다.
-                        </p>
+                        <ul className="mt-8 max-w-4xl list-disc space-y-3 pl-5 text-[17px] leading-8 text-paper/68">
+                            {experienceBullets.map(bullet => <li key={bullet}>{bullet}</li>)}
+                        </ul>
                     </div>
                 </div>
 

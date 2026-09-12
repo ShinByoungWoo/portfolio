@@ -13,10 +13,10 @@ export default function Projects() {
                     </div>
                     <div className="max-w-3xl lg:justify-self-end">
                         <p className="text-xl font-bold leading-8 tracking-[-0.025em] text-ink sm:text-2xl sm:leading-9">
-                            사용한 기술보다 선택한 이유를 먼저 적었습니다.
+                            개발과 운영에서 해결한 문제들입니다.
                         </p>
                         <p className="mt-3 max-w-2xl text-base leading-7 text-ink/75">
-                            반복되는 기본 기능은 덜어내고, 다른 선택지가 있었던 문제와 구현 이후 확인한 변화만 남겼습니다.
+                            각 프로젝트에서 맡은 범위와 구현 과정, 사용 중 발견한 문제를 어떻게 개선했는지 정리했습니다.
                         </p>
                     </div>
                 </header>
