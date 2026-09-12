@@ -64,6 +64,13 @@
 - Codmos Partner Web (2026.06 - 2026.07): 파트너별 콘텐츠 진입: partnerKey·contentSlug 기반 동적 라우팅과 유효성 검증으로 경로에 맞는 콘텐츠를 실행하도록 구현했습니다.
 - Spark EDU - CSAP 대응 (2024.12 - 2025.07): 화면 접근 처리: CSAP 대응 과정에서 역할 기반 라우트 가드와 비허용 경로의 진입 처리를 구현했습니다. 서버 API 권한 검증과 구분되는 프론트엔드 담당 범위입니다.
 
+## AI 활용
+
+OpenAI Codex를 레포지토리 탐색, 영향 범위 분석, 반복 구현과 검증에 활용합니다. 생성 결과를 그대로 반영하지 않고 변경 내용을 직접 검토한 뒤 실행 결과로 확인합니다.
+
+- 커밋 이력과 라우트, 상태, API 흐름을 추적해 변경 범위와 연관 코드를 파악합니다.
+- 변경 내용을 직접 검토하고 lint, build, 브라우저 시나리오로 검증한 뒤 반영합니다.
+
 ## 기술
 
 - 주력 실무: JavaScript, TypeScript, Vue 2/3, Nuxt 3/4, Pinia, PrimeVue
@@ -71,6 +78,7 @@
 - Interaction: Phaser 3, Canvas 2D, Tilemap, Fabric.js, Blockly
 - 콘텐츠·배포: Puppeteer, AWS S3/CDN
 - 테스트: Playwright
+- AI 개발 도구: OpenAI Codex
 
 ## 학력
 

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { additionalCaseStudies, education, experienceBullets, featuredCaseStudies, profile, proofPoints, skillGroups } from '../data/portfolio'
+import { aiExperience, additionalCaseStudies, education, experienceBullets, featuredCaseStudies, profile, proofPoints, skillGroups } from '../data/portfolio'
 
 export default function Resume() {
     return (
@@ -122,6 +122,14 @@ export default function Resume() {
                                 </article>
                             ))}
                         </div>
+                    </ResumeSection>
+
+                    <ResumeSection title="AI 활용">
+                        <p className="text-[13px] leading-6 text-ink/65">{aiExperience.summary}</p>
+                        <ul className="mt-3 grid gap-2 sm:grid-cols-2 print:grid-cols-2">
+                            <ResumeBullet>커밋 이력과 라우트, 상태, API 흐름을 추적해 변경 범위와 연관 코드를 파악합니다.</ResumeBullet>
+                            <ResumeBullet>변경 내용을 직접 검토하고 lint, build, 브라우저 시나리오로 검증한 뒤 반영합니다.</ResumeBullet>
+                        </ul>
                     </ResumeSection>
 
                     <div className="grid gap-0 sm:grid-cols-2 sm:gap-10 print:grid-cols-2 print:gap-8">

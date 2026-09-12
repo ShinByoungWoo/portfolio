@@ -1,4 +1,4 @@
-import { experienceBullets, profile } from '../../data/portfolio'
+import { aiExperience, experienceBullets, profile } from '../../data/portfolio'
 
 const boundaries = [
     {
@@ -68,6 +68,27 @@ export default function Experience() {
                         </article>
                     ))}
                 </div>
+
+                <section className="border-t border-paper/25 py-10 sm:py-14" aria-labelledby="ai-workflow-title">
+                    <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
+                        <div>
+                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">AI-assisted development</p>
+                            <h3 id="ai-workflow-title" className="mt-4 text-2xl font-black tracking-[-0.03em]">Codex 활용 방식</h3>
+                        </div>
+                        <div>
+                            <p className="max-w-3xl text-[16px] leading-8 text-paper/72">{aiExperience.summary}</p>
+                            <ol className="mt-7 grid border-y border-paper/20 md:grid-cols-3">
+                                {aiExperience.steps.map((step, index) => (
+                                    <li key={step.title} className={`py-5 md:px-5 ${index > 0 ? 'border-t border-paper/20 md:border-l md:border-t-0' : ''}`}>
+                                        <p className="text-[10px] font-black text-accent">{String(index + 1).padStart(2, '0')}</p>
+                                        <h4 className="mt-3 text-[15px] font-black text-paper">{step.title}</h4>
+                                        <p className="mt-2 text-[13px] leading-6 text-paper/55">{step.description}</p>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
     )
