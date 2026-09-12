@@ -376,8 +376,4 @@ export const skillGroups = [
         category: '테스트',
         items: ['Playwright'],
     },
-    {
-        category: '개인 프로젝트 · 현재 포트폴리오',
-        items: ['React', 'TypeScript', 'Vite', 'GitHub Actions'],
-    },
 ]

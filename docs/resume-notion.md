@@ -86,7 +86,6 @@
 - Interaction: Phaser 3 · Canvas 2D · Tilemap · Fabric.js · Blockly
 - 콘텐츠·배포: Puppeteer · AWS S3/CDN
 - 테스트: Playwright
-- 개인 프로젝트 · 현재 포트폴리오: React · TypeScript · Vite · GitHub Actions
 
 ## 학력
 
