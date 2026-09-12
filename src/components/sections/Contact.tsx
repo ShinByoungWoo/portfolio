@@ -3,10 +3,10 @@ import { profile } from '../../data/portfolio'
 
 export default function Contact() {
     return (
-        <section id="contact" className="bg-accent px-5 py-20 text-ink sm:px-8 sm:py-28">
-            <div className="mx-auto max-w-[1440px]">
+        <section id="contact" className="bg-accent px-5 py-14 text-ink sm:px-8 sm:py-20">
+            <div className="mx-auto max-w-[1200px]">
                 <p className="text-[11px] font-black uppercase tracking-[0.22em] text-ink/55">Contact</p>
-                <h2 className="mt-5 max-w-6xl text-[clamp(3rem,7.5vw,8rem)] font-black leading-[0.9] tracking-[-0.07em]">
+                <h2 className="mt-5 max-w-[24ch] text-[clamp(2rem,4vw,3.5rem)] font-black leading-[1.3] tracking-[-0.04em]">
                     제품의 복잡한 경계를 함께 정리할 팀을 찾고 있습니다.
                 </h2>
 

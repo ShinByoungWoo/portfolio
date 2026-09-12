@@ -25,6 +25,7 @@ export interface CaseStudy {
     subtitle: string
     period: string
     summary: string
+    scope?: string
     decisions: ProjectDecision[]
     choices: TechnologyChoice[]
     result: {

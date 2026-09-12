@@ -9,7 +9,7 @@ const navItems = [
 export default function Header() {
     return (
         <header className="fixed inset-x-0 top-0 z-40 border-b border-ink/15 bg-paper/95 backdrop-blur-md">
-            <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8">
+            <div className="mx-auto flex h-[72px] max-w-[1264px] items-center justify-between px-5 sm:px-8">
                 <a href="#hero" className="group flex items-baseline gap-3" aria-label="맨 위로 이동">
                     <span className="text-[15px] font-black tracking-[-0.02em] text-ink">SBW</span>
                     <span className="hidden text-[11px] font-bold uppercase tracking-[0.18em] text-ink/45 transition-colors group-hover:text-accent sm:inline">

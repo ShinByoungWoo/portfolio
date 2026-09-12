@@ -4,31 +4,31 @@ import type { InteractiveClip } from '../../types'
 
 export default function Projects() {
     return (
-        <section id="work" className="bg-paper px-5 py-20 sm:px-8 sm:py-28">
-            <div className="mx-auto max-w-[1440px]">
+        <section id="work" className="bg-paper px-5 py-14 sm:px-8 sm:py-20">
+            <div className="mx-auto max-w-[1200px]">
                 <header className="grid gap-8 border-b-4 border-ink pb-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
                     <div>
                         <p className="text-[11px] font-black uppercase tracking-[0.22em] text-accent">Selected work</p>
-                        <h2 className="mt-3 text-5xl font-black tracking-[-0.055em] text-ink sm:text-6xl">작업 기록</h2>
+                        <h2 className="mt-3 text-[32px] font-black tracking-[-0.04em] text-ink sm:text-[40px]">작업 기록</h2>
                     </div>
                     <div className="max-w-3xl lg:justify-self-end">
                         <p className="text-xl font-bold leading-8 tracking-[-0.025em] text-ink sm:text-2xl sm:leading-9">
                             사용한 기술보다 선택한 이유를 먼저 적었습니다.
                         </p>
-                        <p className="mt-3 max-w-2xl text-[15px] leading-7 text-ink/60">
+                        <p className="mt-3 max-w-2xl text-base leading-7 text-ink/75">
                             반복되는 기본 기능은 덜어내고, 다른 선택지가 있었던 문제와 구현 이후 확인한 변화만 남겼습니다.
                         </p>
                     </div>
                 </header>
 
-                <nav className="grid border-b border-ink/20 md:grid-cols-2 xl:grid-cols-4" aria-label="작업 목록">
+                <nav className="grid border-b border-ink/20 md:grid-cols-2 xl:grid-cols-3" aria-label="작업 목록">
                     {caseStudies.map((project, index) => (
                         <a
                             key={project.id}
                             href={`#${project.id}`}
                             className={`group flex min-h-28 items-end justify-between gap-5 py-5 transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-accent md:px-5 ${
-                                index > 0 ? 'border-t border-ink/20 md:border-l md:border-t-0' : ''
-                            } ${index === 2 ? 'md:border-l-0 xl:border-l' : ''}`}
+                                index > 0 ? 'border-t border-ink/20' : ''
+                            } ${index === 1 ? 'md:border-t-0' : ''} ${index % 2 === 1 ? 'md:border-l' : ''} ${index < 3 ? 'xl:border-t-0' : 'xl:border-t'} ${index % 3 === 0 ? 'xl:border-l-0' : 'xl:border-l'}`}
                         >
                             <span className="max-w-[12rem] text-[13px] font-black leading-5">{project.subtitle}</span>
                             <span className="text-[11px] font-black text-ink/35 transition-colors group-hover:text-accent">
@@ -43,14 +43,14 @@ export default function Projects() {
                         <article
                             id={project.id}
                             key={project.id}
-                            className="scroll-mt-24 border-b border-ink/25 py-20 sm:py-28"
+                            className="scroll-mt-24 border-b border-ink/25 py-12 sm:py-16"
                         >
-                            <div className="grid gap-10 lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[260px_minmax(0,1fr)]">
+                            <div className="grid gap-6 lg:grid-cols-[150px_minmax(0,1fr)] lg:gap-10">
                                 <aside className="lg:sticky lg:top-28 lg:self-start">
-                                    <p className="text-7xl font-black leading-none tracking-[-0.08em] text-accent">
+                                    <p className="text-4xl font-black leading-none tracking-[-0.04em] text-accent">
                                         {project.number}
                                     </p>
-                                    <p className="mt-5 text-[11px] font-black uppercase tracking-[0.2em] text-ink/45">
+                                    <p className="mt-4 text-[13px] font-bold uppercase tracking-[0.08em] text-ink/70">
                                         {project.category}
                                     </p>
                                     <p className="mt-2 text-[13px] font-bold text-ink/60">{project.period}</p>
@@ -59,15 +59,20 @@ export default function Projects() {
                                 <div>
                                     <header className="max-w-5xl">
                                         <p className="text-[13px] font-black text-accent">{project.subtitle}</p>
-                                        <h3 className="mt-4 text-4xl font-black leading-[1.05] tracking-[-0.055em] text-ink sm:text-5xl lg:text-6xl">
+                                        <h3 className="mt-3 max-w-[26ch] text-[28px] font-black leading-[1.35] tracking-[-0.035em] text-ink sm:text-4xl">
                                             {project.title}
                                         </h3>
-                                        <p className="mt-7 max-w-4xl text-[17px] leading-8 text-ink/65 sm:text-[19px] sm:leading-9">
+                                        <p className="mt-5 max-w-4xl text-base leading-8 text-ink/80">
                                             {project.summary}
                                         </p>
+                                        {project.scope && (
+                                            <p className="mt-5 border-l-2 border-accent pl-4 text-[15px] leading-7 text-ink/80">
+                                                <strong className="mr-2 text-ink">담당 범위</strong>{project.scope}
+                                            </p>
+                                        )}
                                     </header>
 
-                                    <ol className="mt-14 border-t border-ink/30">
+                                    <ol className="mt-8 border-t border-ink/30">
                                         {project.decisions.map((decision, index) => (
                                             <li
                                                 key={decision.question}
@@ -77,21 +82,21 @@ export default function Projects() {
                                                     {String(index + 1).padStart(2, '0')}
                                                 </span>
                                                 <div>
-                                                    <h4 className="max-w-4xl text-xl font-black leading-8 tracking-[-0.025em] text-ink sm:text-2xl">
+                                                    <h4 className="max-w-4xl text-lg font-bold leading-8 tracking-[-0.02em] text-ink sm:text-xl">
                                                         {decision.question}
                                                     </h4>
                                                     <div className="mt-6 grid gap-6 md:grid-cols-2 md:gap-10">
                                                         <div>
-                                                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-ink/40">
-                                                                Why
+                                                            <p className="text-[13px] font-bold text-ink/70">
+                                                                문제와 판단
                                                             </p>
-                                                            <p className="mt-2 text-[15px] leading-7 text-ink/65">{decision.reason}</p>
+                                                            <p className="mt-2 text-base leading-8 text-ink/80">{decision.reason}</p>
                                                         </div>
                                                         <div>
-                                                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-ink/40">
-                                                                How
+                                                            <p className="text-[13px] font-bold text-ink/70">
+                                                                구현
                                                             </p>
-                                                            <p className="mt-2 text-[15px] leading-7 text-ink/65">
+                                                            <p className="mt-2 text-base leading-8 text-ink/80">
                                                                 {decision.implementation}
                                                             </p>
                                                         </div>
@@ -111,16 +116,16 @@ export default function Projects() {
                                                     className="grid gap-2 border-b border-ink/15 py-4 first:pt-0 last:border-b-0 last:pb-0 sm:grid-cols-[130px_minmax(0,1fr)] sm:gap-6"
                                                 >
                                                     <dt className="text-[13px] font-black text-ink">{choice.name}</dt>
-                                                    <dd className="text-[14px] leading-6 text-ink/58">{choice.reason}</dd>
+                                                    <dd className="text-[15px] leading-7 text-ink/75">{choice.reason}</dd>
                                                 </div>
                                             ))}
                                         </dl>
 
                                         <div className="bg-ink px-7 py-8 text-paper lg:px-9">
-                                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-paper/45">
-                                                Result
+                                            <p className="text-[13px] font-bold text-paper/75">
+                                                결과
                                             </p>
-                                            <p className="mt-4 text-3xl font-black tracking-[-0.05em] text-accent sm:text-4xl">
+                                            <p className="mt-3 text-2xl font-bold tracking-[-0.03em] text-accent sm:text-[28px]">
                                                 {project.result.value}
                                             </p>
                                             <p className="mt-4 max-w-lg text-[15px] leading-7 text-paper/72">

@@ -7,9 +7,9 @@ const boundaries = [
         description: '같은 데이터가 역할마다 다른 목적과 권한을 가질 때, 화면보다 먼저 진입 경계와 작업 순서를 정리합니다.',
     },
     {
-        label: 'Trust boundaries',
-        title: '라우트 · 세션 · 암호화 · iframe',
-        description: '외부 입력과 내부 상태가 만나는 지점을 찾아 검증, 오류 처리, 메시지 계약을 한 곳에 둡니다.',
+        label: 'Product operations',
+        title: '상태 유지 · 목록 조회 · QA',
+        description: '페이지 이동과 새로고침, 계정 목록 검색, 수업 입장처럼 실제 사용 중 생기는 데이터·화면 상태 이슈를 수정합니다.',
     },
     {
         label: 'Interaction systems',
@@ -20,12 +20,12 @@ const boundaries = [
 
 export default function Experience() {
     return (
-        <section id="experience" className="bg-ink px-5 py-20 text-paper sm:px-8 sm:py-28">
-            <div className="mx-auto max-w-[1440px]">
+        <section id="experience" className="bg-ink px-5 py-14 text-paper sm:px-8 sm:py-20">
+            <div className="mx-auto max-w-[1200px]">
                 <header className="grid gap-8 border-b border-paper/25 pb-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
                     <div>
                         <p className="text-[11px] font-black uppercase tracking-[0.22em] text-accent">Experience</p>
-                        <h2 className="mt-3 text-5xl font-black tracking-[-0.055em] sm:text-6xl">경력과 범위</h2>
+                        <h2 className="mt-3 text-[32px] font-black tracking-[-0.04em] sm:text-[40px]">경력과 범위</h2>
                     </div>
                     <p className="max-w-3xl text-xl font-bold leading-8 tracking-[-0.025em] text-paper/88 lg:justify-self-end sm:text-2xl sm:leading-9">
                         프레임워크보다 제품의 경계에서 반복해서 해결한 문제로 경험을 설명합니다.
@@ -48,9 +48,9 @@ export default function Experience() {
                         </div>
 
                         <p className="mt-8 max-w-4xl text-[17px] leading-8 text-paper/68">
-                            사용자 서비스와 운영 도구를 병렬로 개발하며 역할 기반 접근 제어, 데이터 리포트, 실시간 협업 기능을
-                            구현했습니다. 화면 구현에 그치지 않고 보안 인증, 콘텐츠 배포 자동화, Canvas 성능 개선까지
-                            브라우저에서 이어지는 문제를 맡았습니다.
+                            LMS·Admin 프론트엔드 3명 중 코스·학습 리포트·게시판과 계정 관리 화면을 담당했습니다.
+                            2026년 1~3월 주요 기능 개발 이후 QA·CS 대응을 이어갔으며, 콘텐츠 CMS 통합 과정의
+                            콘텐츠 등록·Canva HTML 가공과 인터랙티브 콘텐츠 개발에도 참여했습니다.
                         </p>
                     </div>
                 </div>

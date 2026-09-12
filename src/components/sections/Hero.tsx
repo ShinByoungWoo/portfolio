@@ -3,8 +3,8 @@ import { profile, proofPoints } from '../../data/portfolio'
 
 export default function Hero() {
     return (
-        <section id="hero" className="border-b border-ink/20 bg-paper px-5 pb-16 pt-32 sm:px-8 sm:pb-20 sm:pt-40">
-            <div className="mx-auto max-w-[1440px]">
+        <section id="hero" className="border-b border-ink/20 bg-paper px-5 pb-12 pt-28 sm:px-8 sm:pb-16 sm:pt-32">
+            <div className="mx-auto max-w-[1200px]">
                 <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-20">
                     <div>
                         <p className="mb-7 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.22em] text-accent">
@@ -12,7 +12,7 @@ export default function Hero() {
                             Frontend engineer · Seoul
                         </p>
 
-                        <h1 className="max-w-5xl text-[clamp(3.5rem,8vw,8.7rem)] font-black leading-[0.88] tracking-[-0.075em] text-ink">
+                        <h1 className="max-w-5xl text-[clamp(2.5rem,5.2vw,4.5rem)] font-black leading-[1.15] tracking-[-0.05em] text-ink">
                             제품의 복잡도를
                             <span className="block text-accent">사용자의 흐름으로.</span>
                         </h1>
@@ -27,13 +27,13 @@ export default function Hero() {
                         </p>
                         <p className="mt-1 text-[14px] font-bold text-accent">{profile.period}</p>
                         <p className="mt-6 text-[16px] leading-7 text-ink/70">
-                            권한이 다른 사용자와 데이터가 많은 제품에서 화면보다 먼저 경계를 설계합니다.
+                            코스·학습 리포트부터 계정 관리까지, 제품 화면의 개발과 운영 이슈 대응을 맡았습니다.
                         </p>
                     </aside>
                 </div>
 
                 <div className="mt-16 grid gap-10 border-t border-ink/20 pt-9 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-20">
-                    <div className="max-w-3xl space-y-4 text-[17px] leading-8 text-ink/68 sm:text-[19px] sm:leading-9">
+                    <div className="max-w-3xl space-y-4 text-base leading-8 text-ink/80 sm:text-lg">
                         {profile.portfolioIntro.map(paragraph => (
                             <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -61,15 +61,15 @@ export default function Hero() {
                             key={point.label}
                             className={`py-6 sm:px-7 ${index > 0 ? 'border-t border-ink/20 sm:border-l sm:border-t-0' : ''}`}
                         >
-                            <dt className="flex items-baseline gap-3">
-                                <span className="text-4xl font-black tracking-[-0.06em] text-ink sm:text-5xl">
+                            <dt className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
+                                <span className="text-3xl font-black tracking-[-0.04em] text-ink sm:text-4xl">
                                     {point.value}
                                 </span>
                                 <span className="text-[12px] font-black uppercase tracking-[0.12em] text-accent">
                                     {point.label}
                                 </span>
                             </dt>
-                            <dd className="mt-3 max-w-sm text-[14px] leading-6 text-ink/55">{point.detail}</dd>
+                            <dd className="mt-3 max-w-sm text-[15px] leading-7 text-ink/75">{point.detail}</dd>
                         </div>
                     ))}
                 </dl>

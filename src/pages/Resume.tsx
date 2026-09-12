@@ -1,12 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { caseStudies, profile, proofPoints, skillGroups } from '../data/portfolio'
-
-const experienceBullets = [
-    '역할별 라우팅과 사용자 서비스·운영 도구의 데이터 화면을 실제 업무 흐름에 맞게 구현했습니다.',
-    '인증 만료, 공격 입력, 만료 URL, iframe 통신처럼 브라우저 경계에서 생기는 문제를 공통 흐름으로 정리했습니다.',
-    'Phaser·Canvas 콘텐츠의 입력과 렌더링 병목을 분석해 40fps까지 떨어지던 화면을 60fps로 개선했습니다.',
-]
+import { caseStudies, education, experienceBullets, profile, proofPoints, skillGroups } from '../data/portfolio'
 
 export default function Resume() {
     return (
@@ -72,7 +66,7 @@ export default function Resume() {
                         <div className="grid gap-5 sm:grid-cols-[190px_minmax(0,1fr)] print:grid-cols-[170px_minmax(0,1fr)]">
                             <div>
                                 <h3 className="text-lg font-black tracking-[-0.025em]">{profile.company}</h3>
-                                <p className="mt-1 text-[12px] font-black text-accent">Frontend Engineer</p>
+                                <p className="mt-1 text-[12px] font-black text-accent">{profile.role}</p>
                                 <p className="mt-1 text-[12px] font-bold text-ink/45">{profile.period}</p>
                             </div>
                             <div>
@@ -98,22 +92,11 @@ export default function Resume() {
                                         <p className="shrink-0 text-[12px] font-bold text-ink/45">{project.period}</p>
                                     </header>
 
+                                    {project.scope && (
+                                        <p className="mt-3 text-[12px] leading-6 text-ink/60">{project.scope}</p>
+                                    )}
                                     <dl className="mt-5 space-y-4 print:mt-4 print:space-y-3">
-                                        <ResumeDetail label="문제">
-                                            <p>{project.summary}</p>
-                                        </ResumeDetail>
-                                        <ResumeDetail label="선택 이유">
-                                            <ul className="space-y-2">
-                                                {project.choices.map(choice => (
-                                                    <li key={choice.name}>
-                                                        <strong className="font-black text-ink">{choice.name}</strong>
-                                                        <span className="text-ink/40"> — </span>
-                                                        {choice.reason}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </ResumeDetail>
-                                        <ResumeDetail label="실행">
+                                        <ResumeDetail label="핵심 기여">
                                             <ul className="space-y-2">
                                                 {project.resumeBullets.map(bullet => (
                                                     <ResumeBullet key={bullet}>{bullet}</ResumeBullet>
@@ -146,14 +129,12 @@ export default function Resume() {
 
                         <ResumeSection title="학력">
                             <div className="space-y-4 text-[13px] leading-6 text-ink/65">
-                                <p>
-                                    <strong className="block font-black text-ink">한국방송통신대학교</strong>
-                                    재학 중
-                                </p>
-                                <p>
-                                    <strong className="block font-black text-ink">전남과학대학교</strong>
-                                    호텔관광학과 졸업
-                                </p>
+                                {education.map(item => (
+                                    <p key={item.school}>
+                                        <strong className="block font-black text-ink">{item.school}</strong>
+                                        {item.detail}
+                                    </p>
+                                ))}
                             </div>
                         </ResumeSection>
                     </div>
