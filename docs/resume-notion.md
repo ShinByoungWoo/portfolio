@@ -12,7 +12,7 @@
 
 ## 경력
 
-### 로지브라더스 - CODMOS | 프론트엔드 개발자
+### 로지브라더스 - CODMOS · 프론트엔드 개발자
 
 2022.06 - 현재
 
@@ -50,7 +50,7 @@
 팀의 콘텐츠 통합 작업에 참여. 콘텐츠 이관·등록과 Canva HTML 수집·가공 스크립트 및 다중 등록 기능 담당.
 
 - 콘텐츠 통합 관리에 참여: Phaser·CreateJS·Vue 등으로 개별 제작한 콘텐츠를 CMS에 이관·등록하고, 기존 콘텐츠의 실행과 학습 저장 연동을 수정했습니다.
-- 등록 준비 작업 자동화: Puppeteer로 Canva HTML 수집, 이미지 다운로드·WebP 변환·배포 경로 치환을 처리하고 다중 등록으로 확장했습니다. 초기 등록 샘플의 Git 스냅샷에서 15개 언어별 산출물과 253개 WebP 이미지 자산을 확인했습니다.
+- 등록 준비 작업 자동화: Puppeteer로 Canva HTML 수집, 이미지의 MD5 기반 중복 제거·WebP 변환·경로 치환을 처리했습니다. 10개 폴더·208개 HTML의 참조 이미지 기준, 현재 형식의 페이지별 중복 저장 가정 대비 약 62.8% 절감으로 추산했습니다(1,128.21 → 419.41 MiB, 2026.09.23 집계).
 
 ### Phaser / Canvas 기반 학습 콘텐츠
 
@@ -66,12 +66,13 @@
 
 ## 기술
 
-- 주력 실무: JavaScript, TypeScript, Vue 2/3, Nuxt 3/4, Pinia, PrimeVue
-- 브라우저·데이터 연동: iframe, postMessage, Socket.IO, EditorJS
-- Interaction: Phaser 3, Canvas 2D, Tilemap, Fabric.js, Blockly
-- 콘텐츠·배포: Puppeteer, AWS S3/CDN
+- 주력 실무: JavaScript · TypeScript · Vue 2/3 · Nuxt 3/4 · Pinia · PrimeVue
+- 브라우저·데이터 연동: iframe · postMessage · Socket.IO · EditorJS
+- Interaction: Phaser 3 · Canvas 2D · Tilemap · Fabric.js · Blockly
+- 콘텐츠·배포: Puppeteer · AWS S3/CDN
 - 테스트: Playwright
+
 ## 학력
 
-- 한국방송통신대학교 - 2025학번, 재학 중
-- 전남과학대학교 - 호텔관광학과 졸업
+- 한국방송통신대학교 · 2025학번 - 재학 중
+- 전남과학대학교 · 호텔관광학과 졸업
