@@ -1,3 +1,4 @@
+import { useScrollNavigation } from '../../hooks/useScrollNavigation'
 import { Link } from 'react-router-dom'
 
 const navItems = [
@@ -7,8 +8,11 @@ const navItems = [
 ]
 
 export default function Header() {
+    const { activeSection, progressRef } = useScrollNavigation(navItems)
+
     return (
         <header className="fixed inset-x-0 top-0 z-40 border-b border-ink/15 bg-paper/95 backdrop-blur-md">
+            <div ref={progressRef} className="reading-progress" aria-hidden="true" />
             <div className="mx-auto flex h-[72px] max-w-[1264px] items-center justify-between px-5 sm:px-8">
                 <a href="#hero" className="group flex items-baseline gap-3" aria-label="맨 위로 이동">
                     <span className="text-[15px] font-black tracking-[-0.02em] text-ink">SBW</span>
@@ -23,7 +27,8 @@ export default function Header() {
                             <a
                                 key={item.href}
                                 href={item.href}
-                                className="text-[13px] font-bold text-ink/60 underline-offset-4 transition-colors hover:text-accent hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                                aria-current={activeSection === item.href ? 'location' : undefined}
+                                className="section-link text-[13px] font-bold text-ink/60 transition-colors hover:text-accent focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                             >
                                 {item.label}
                             </a>

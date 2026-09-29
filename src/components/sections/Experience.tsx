@@ -22,7 +22,7 @@ export default function Experience() {
     return (
         <section id="experience" className="bg-ink px-5 py-14 text-paper sm:px-8 sm:py-20">
             <div className="mx-auto max-w-[1200px]">
-                <header className="grid gap-8 border-b border-paper/25 pb-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
+                <header data-reveal className="grid gap-8 border-b border-paper/25 pb-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
                     <div>
                         <p className="text-[11px] font-black uppercase tracking-[0.22em] text-accent">Experience</p>
                         <h2 className="mt-3 text-[32px] font-black tracking-[-0.04em] sm:text-[40px]">경력과 범위</h2>
@@ -33,12 +33,12 @@ export default function Experience() {
                 </header>
 
                 <div className="grid border-b border-paper/25 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
-                    <div className="border-b border-paper/20 py-10 lg:border-b-0 lg:py-14">
+                    <div data-reveal className="border-b border-paper/20 py-10 lg:border-b-0 lg:py-14">
                         <p className="text-[11px] font-black uppercase tracking-[0.2em] text-paper/40">2022.06 - Now</p>
                         <p className="mt-4 text-5xl font-black tracking-[-0.06em] text-accent">4+ years</p>
                     </div>
 
-                    <div className="py-10 lg:border-l lg:border-paper/20 lg:py-14 lg:pl-16">
+                    <div data-reveal className="py-10 lg:border-l lg:border-paper/20 lg:py-14 lg:pl-16">
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                             <div>
                                 <h3 className="text-3xl font-black tracking-[-0.045em] sm:text-4xl">{profile.company}</h3>
@@ -59,6 +59,8 @@ export default function Experience() {
                 <div className="grid lg:grid-cols-3">
                     {boundaries.map((boundary, index) => (
                         <article
+                            data-reveal
+                            data-reveal-delay={index * 80}
                             key={boundary.label}
                             className={`py-9 lg:px-8 lg:py-12 ${index > 0 ? 'border-t border-paper/20 lg:border-l lg:border-t-0' : ''}`}
                         >

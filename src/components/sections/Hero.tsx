@@ -7,18 +7,18 @@ export default function Hero() {
             <div className="mx-auto max-w-[1200px]">
                 <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-20">
                     <div>
-                        <p className="mb-7 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.22em] text-accent">
+                        <p data-reveal className="mb-7 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.22em] text-accent">
                             <span className="h-2 w-2 bg-accent" aria-hidden="true" />
                             Frontend engineer - Seoul
                         </p>
 
-                        <h1 className="max-w-5xl text-[clamp(2.5rem,5.2vw,4.5rem)] font-black leading-[1.15] tracking-[-0.05em] text-ink">
+                        <h1 data-reveal data-reveal-delay="70" className="max-w-5xl text-[clamp(2.5rem,5.2vw,4.5rem)] font-black leading-[1.15] tracking-[-0.05em] text-ink">
                             학습의 경험부터
                             <span className="block text-accent">서비스 운영까지.</span>
                         </h1>
                     </div>
 
-                    <aside className="border-t-4 border-ink pt-6">
+                    <aside data-reveal data-reveal-delay="140" className="border-t-4 border-ink pt-6">
                         <p className="text-[12px] font-black uppercase tracking-[0.18em] text-ink/45">
                             Currently
                         </p>
@@ -33,13 +33,13 @@ export default function Hero() {
                 </div>
 
                 <div className="mt-16 grid gap-10 border-t border-ink/20 pt-9 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-20">
-                    <div className="max-w-3xl space-y-4 text-base leading-8 text-ink/80 sm:text-lg">
+                    <div data-reveal data-reveal-delay="140" className="max-w-3xl space-y-4 text-base leading-8 text-ink/80 sm:text-lg">
                         {profile.portfolioIntro.map(paragraph => (
                             <p key={paragraph}>{paragraph}</p>
                         ))}
                     </div>
 
-                    <div className="flex flex-wrap items-start gap-x-6 gap-y-4 lg:flex-col lg:gap-3">
+                    <div data-reveal data-reveal-delay="210" className="flex flex-wrap items-start gap-x-6 gap-y-4 lg:flex-col lg:gap-3">
                         <a
                             href="#work"
                             className="inline-flex min-h-12 items-center bg-ink px-5 text-[13px] font-black text-paper transition-colors hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
@@ -58,6 +58,8 @@ export default function Hero() {
                 <dl className="mt-16 grid border-y border-ink/20 sm:grid-cols-3">
                     {proofPoints.map((point, index) => (
                         <div
+                            data-reveal
+                            data-reveal-delay={index * 70}
                             key={point.label}
                             className={`py-6 sm:px-7 ${index > 0 ? 'border-t border-ink/20 sm:border-l sm:border-t-0' : ''}`}
                         >

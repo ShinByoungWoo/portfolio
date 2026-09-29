@@ -1,11 +1,11 @@
-import { writeFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { additionalCaseStudies, education, experienceBullets, featuredCaseStudies, profile, proofPoints, skillGroups } from '../src/data/portfolio.ts'
 
 // The web resume and this Notion-ready draft use the same source data.
 const lines = [
     `# ${profile.name} | ${profile.role}`,
     '',
-    profile.resumeSummary,
+    profile.portfolioIntro.join(' '),
     '',
     `- 이메일: ${profile.email}`,
     `- 전화: ${profile.phone}`,
@@ -45,5 +45,7 @@ lines.push('', '## 학력', '')
 for (const item of education) lines.push(`- ${item.school} · ${item.detail}`)
 lines.push('')
 
-await writeFile(new URL('../docs/resume-notion.md', import.meta.url), lines.join('\n'), 'utf8')
-console.log('Generated docs/resume-notion.md from src/data/portfolio.ts')
+const outputDirectory = new URL('../exports/', import.meta.url)
+await mkdir(outputDirectory, { recursive: true })
+await writeFile(new URL('resume-notion.md', outputDirectory), lines.join('\n'), 'utf8')
+console.log('Generated exports/resume-notion.md from src/data/portfolio.ts')

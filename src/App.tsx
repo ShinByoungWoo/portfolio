@@ -1,17 +1,19 @@
-import { useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/layout/Header'
 import Contact from './components/sections/Contact'
 import Experience from './components/sections/Experience'
 import Hero from './components/sections/Hero'
 import Projects from './components/sections/Projects'
 import Resume from './pages/Resume'
+import { useScrollReveal } from './hooks/useScrollReveal'
+import { useRouteScroll } from './hooks/useRouteScroll'
 
 function Portfolio() {
+    const revealRef = useScrollReveal()
     return (
         <>
             <Header />
-            <main>
+            <main ref={revealRef}>
                 <Hero />
                 <Projects />
                 <Experience />
@@ -27,11 +29,7 @@ function Portfolio() {
 }
 
 export default function App() {
-    const { pathname } = useLocation()
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [pathname])
+    useRouteScroll()
 
     return (
         <Routes>

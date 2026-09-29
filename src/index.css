@@ -46,6 +46,67 @@ button {
     color: var(--color-ink);
 }
 
+/* Only the observer opts content into its hidden state. */
+[data-reveal-pending] {
+    opacity: 0;
+}
+
+[data-reveal-pending]:focus-within {
+    opacity: 1;
+}
+
+section[id] {
+    scroll-margin-top: 88px;
+}
+
+.reading-progress {
+    position: absolute;
+    inset: auto 0 -1px;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
+}
+
+.section-link {
+    position: relative;
+    padding-block: 6px;
+}
+
+.section-link::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 240ms ease;
+}
+
+.section-link[aria-current] {
+    color: var(--color-accent);
+}
+
+.section-link[aria-current]::after,
+.section-link:hover::after,
+.section-link:focus-visible::after {
+    transform: scaleX(1);
+}
+
+.motion-card {
+    transition: translate 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .motion-card:hover {
+        translate: 0 -4px;
+        border-color: var(--color-accent);
+        box-shadow: 0 8px 0 -4px var(--color-accent);
+    }
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -65,6 +126,14 @@ button {
 }
 
 @media print {
+    [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .reading-progress {
+        display: none;
+    }
     html,
     body {
         background: #ffffff;
@@ -82,6 +151,14 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .motion-card:hover {
+        translate: none;
+    }
     html {
         scroll-behavior: auto;
     }
@@ -91,5 +168,6 @@ button {
     *::after {
         scroll-behavior: auto !important;
         transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
     }
 }
