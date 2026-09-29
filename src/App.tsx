@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Header from './components/layout/Header'
 import Contact from './components/sections/Contact'
 import Experience from './components/sections/Experience'
@@ -7,9 +8,17 @@ import Projects from './components/sections/Projects'
 import Resume from './pages/Resume'
 import { useScrollReveal } from './hooks/useScrollReveal'
 import { useRouteScroll } from './hooks/useRouteScroll'
+import ProjectDetails from './pages/ProjectDetails'
+import { caseStudies } from './data/portfolio'
 
 function Portfolio() {
     const revealRef = useScrollReveal()
+    const { hash } = useLocation()
+    const navigate = useNavigate()
+    useEffect(() => {
+        const project = caseStudies.find(item => `#${item.id}` === hash)
+        if (project) navigate(`/work/${project.id}`, { replace: true })
+    }, [hash, navigate])
     return (
         <>
             <Header />
@@ -35,6 +44,7 @@ export default function App() {
         <Routes>
             <Route path="/" element={<Portfolio />} />
             <Route path="/resume" element={<Resume />} />
+            <Route path="/work/:projectId" element={<ProjectDetails />} />
         </Routes>
     )
 }

@@ -5,9 +5,11 @@ const publicAsset = (path: string) => `${import.meta.env?.BASE_URL ?? '/'}${path
 export const profile = {
     name: '신병우',
     portfolioIntro: [
-        '에듀테크에서 4년간 학습 콘텐츠와 웹 서비스를 개발해 온 프론트엔드 개발자 신병우입니다. 학생이 직접 사용하는 인터랙티브 콘텐츠부터 교사의 수업 관리, 운영자의 관리 도구까지 서로 다른 사용자를 위한 제품을 만들어 왔습니다.',
-        '새로운 기능을 만드는 일뿐 아니라 출시 후 드러나는 사용상의 문제도 해결해 왔습니다. 학습을 이어갈 때의 상태 유지, 실시간 수업의 화면 동기화, 반복적인 콘텐츠 등록 작업을 개선하며 제품의 개발과 운영을 함께 경험했습니다.',
+        'Vue·Nuxt로 학습 서비스와 운영 도구를 개발해 온 프론트엔드 개발자 신병우입니다.',
+        '화면 간 상태 유지, 실시간 수업 동기화, 콘텐츠 등록 자동화를 구현하며 제품의 개발과 운영을 함께 경험했습니다.',
     ],
+    primaryStack: ['Vue', 'Nuxt', 'TypeScript', 'Pinia'],
+    portfolioUrl: 'https://shinbyoungwoo.github.io/portfolio/',
     email: 'sbw0121@naver.com',
     phone: '010-4901-2582',
     github: 'https://github.com/ShinByoungWoo',
@@ -28,24 +30,6 @@ export const experienceBullets = [
 export const education = [
     { school: '한국방송통신대학교', detail: '2025학번 - 재학 중' },
     { school: '전남과학대학교', detail: '호텔관광학과 졸업' },
-]
-
-export const proofPoints = [
-    {
-        value: '4+',
-        label: '프론트엔드 개발 연차',
-        detail: '2022년부터 사용자 서비스와 운영 도구를 개발했습니다.',
-    },
-    {
-        value: '3개 역할',
-        label: '사용자 관점',
-        detail: '학생, 교사, 운영자의 서로 다른 학습 및 관리 흐름을 구현했습니다.',
-    },
-    {
-        value: 'LMS / Admin',
-        label: '제품 개발·운영',
-        detail: '프론트엔드 3명 중 코스, 리포트, 게시판과 계정 관리 화면을 담당했습니다.',
-    },
 ]
 
 const interactiveClips: InteractiveClip[] = [
@@ -86,7 +70,8 @@ const interactiveClips: InteractiveClip[] = [
 export const caseStudies: CaseStudy[] = [
     {
         id: 'partner-web',
-        number: '01',
+        stack: ["Nuxt","Pinia","postMessage"],
+        number: '05',
         category: 'Partner integration',
         title: '파트너별 진입과 콘텐츠 이어하기 흐름을 연결했습니다.',
         subtitle: 'Codmos Partner Web',
@@ -121,7 +106,8 @@ export const caseStudies: CaseStudy[] = [
     },
     {
         id: 'product-system',
-        number: '02',
+        stack: ["Nuxt","TypeScript","Pinia","Socket.IO"],
+        number: '01',
         category: 'Product system',
         title: '코스·리포트·게시판을 수업의 흐름에 맞게 연결했습니다.',
         subtitle: 'CODMOS Web LMS',
@@ -173,7 +159,8 @@ export const caseStudies: CaseStudy[] = [
     },
     {
         id: 'admin-operations',
-        number: '03',
+        stack: ["Nuxt","TypeScript","PrimeVue"],
+        number: '02',
         category: 'Admin operations',
         title: '계정 목록부터 등록·상세·수정까지 운영 화면을 개발했습니다.',
         subtitle: 'CODMOS Admin Web v2',
@@ -203,7 +190,7 @@ export const caseStudies: CaseStudy[] = [
         ],
         result: {
             value: '6개 계정 목록의 조회 흐름 개선',
-            label: '검색, 페이지 이동, 기관 선택이 데이터 규모와 관계없이 일관되게 동작하도록 조회 흐름을 정리했습니다.',
+            label: '검색 조건 변경 시 첫 페이지로 초기화하고, 페이지·검색 조건을 서버 요청과 함께 관리하도록 변경했습니다.',
         },
         resumeBullets: [
             '계정 유형별 관리 화면 개발: 본부·기관·교사·학생의 등록·상세·수정 화면을 API와 연결하고, 유형마다 다른 입력 조건과 유효성 검사를 반영했습니다.',
@@ -213,7 +200,8 @@ export const caseStudies: CaseStudy[] = [
     },
     {
         id: 'security-flow',
-        number: '04',
+        stack: ["Nuxt","라우트 가드"],
+        number: '06',
         category: 'Trust boundary',
         title: '접근 권한과 세션 만료에 따른 화면 처리를 정리했습니다.',
         subtitle: 'Spark EDU - CSAP 대응',
@@ -253,7 +241,8 @@ export const caseStudies: CaseStudy[] = [
     },
     {
         id: 'content-pipeline',
-        number: '05',
+        stack: ["Puppeteer","Node.js","WebP","postMessage"],
+        number: '03',
         category: 'Content delivery',
         title: '다양한 학습 콘텐츠를 CMS에 모으고 등록 과정을 자동화했습니다.',
         subtitle: 'CODMOS CMS - 콘텐츠 통합 및 Canva 등록',
@@ -295,8 +284,8 @@ export const caseStudies: CaseStudy[] = [
             },
         ],
         result: {
-            value: '참조 이미지 용량 약 62.8% 절감 추산',
-            label: '10개 폴더·208개 HTML 기준, 현재 형식으로 페이지마다 중복 저장하는 가정 대비 1,128.21 → 419.41 MiB로 추산했습니다(2026.09.23 집계). WebP 변환 전 원본과 비교한 실측치는 아닙니다.',
+            value: '이미지 가공과 다중 등록 자동화',
+            label: 'HTML 수집·이미지 중복 제거·WebP 변환·경로 치환을 다중 등록으로 연결했습니다. 10개 폴더·208개 HTML에서 현재 형식의 페이지별 중복 저장 가정 대비 참조 이미지 용량 약 62.8% 절감으로 추산했습니다(1,128.21 → 419.41 MiB, 2026.09.23 집계). 원본 대비 실측치는 아닙니다.',
         },
         resumeBullets: [
             '콘텐츠 통합 관리에 참여: Phaser·CreateJS·Vue 등으로 개별 제작한 콘텐츠를 CMS에 이관·등록하고, 기존 콘텐츠의 실행과 학습 저장 연동을 수정했습니다.',
@@ -306,7 +295,8 @@ export const caseStudies: CaseStudy[] = [
     },
     {
         id: 'interactive-systems',
-        number: '06',
+        stack: ["Phaser 3","Canvas 2D","JavaScript"],
+        number: '04',
         category: 'Interaction systems',
         title: '학습 콘텐츠의 입력과 렌더링 동작을 구현했습니다.',
         subtitle: 'Phaser / Canvas 기반 학습 콘텐츠',
@@ -369,12 +359,16 @@ export const skillGroups = [
         items: ['Puppeteer', 'AWS S3/CDN'],
     },
     {
+        category: '개인 프로젝트',
+        items: ['React', 'Vite'],
+    },
+    {
         category: '테스트',
         items: ['Playwright'],
     },
 ]
 
-const featuredProjectIds = ['product-system', 'admin-operations', 'content-pipeline', 'interactive-systems']
+const featuredProjectIds = ['product-system', 'admin-operations', 'content-pipeline']
 
 export const featuredCaseStudies = featuredProjectIds.map((id, index) => {
     const project = caseStudies.find(item => item.id === id)
@@ -383,5 +377,26 @@ export const featuredCaseStudies = featuredProjectIds.map((id, index) => {
 })
 
 export const additionalCaseStudies = caseStudies.filter(project =>
-    ['partner-web', 'security-flow'].includes(project.id),
+    ['interactive-systems', 'partner-web', 'security-flow'].includes(project.id),
 )
+
+export const projectOverviews: Record<string, { focus: string; problem: string; contribution: string; outcome: string }> = {
+    'product-system': {
+        focus: '화면이 바뀌어도 이어지는 학습 상태',
+        problem: '코스·리포트 이동과 늦은 수업 입장에서 학습 맥락이 달라지는 문제',
+        contribution: '공유 상태 관리, 리포트 폴링, 입장 시 동기화 상태 반영',
+        outcome: '선택 단원을 유지하고 기존 수업 상태를 입장 직후 반영',
+    },
+    'admin-operations': {
+        focus: '검색부터 수정까지 일관된 운영 화면',
+        problem: '계정 유형별 목록 조회와 수정 화면의 기존 선택값 처리',
+        contribution: '서버 페이지네이션, 검색 디바운스, 기관 선택 UI 개선',
+        outcome: '6개 계정 목록과 3개 API 모듈의 조회 방식 전환',
+    },
+    'content-pipeline': {
+        focus: '반복하던 콘텐츠 등록 준비를 자동화',
+        problem: '외부 HTML과 이미지 자산을 배포 형식으로 가공하는 반복 작업',
+        contribution: 'HTML 수집, 이미지 중복 제거·WebP 변환, 경로 치환',
+        outcome: '언어별 산출물 생성과 다중 등록으로 처리 범위 확장',
+    },
+}

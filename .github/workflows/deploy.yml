@@ -32,6 +32,9 @@ jobs:
         # has not caught up yet. The lockfile is verified by the build below.
         run: npm ci --legacy-peer-deps
 
+      - name: Check
+        run: npm run lint && npm test
+
       - name: Build
         run: npm run build
 

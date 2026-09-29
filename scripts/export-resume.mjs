@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises'
-import { additionalCaseStudies, education, experienceBullets, featuredCaseStudies, profile, proofPoints, skillGroups } from '../src/data/portfolio.ts'
+import { additionalCaseStudies, education, experienceBullets, featuredCaseStudies, profile, skillGroups } from '../src/data/portfolio.ts'
 
 // The web resume and this Notion-ready draft use the same source data.
 const lines = [
@@ -11,7 +11,8 @@ const lines = [
     `- 전화: ${profile.phone}`,
     `- [GitHub](${profile.github})`,
     '',
-    ...proofPoints.map(point => `- ${point.label}: ${point.value}`),
+    `- [포트폴리오](${profile.portfolioUrl})`,
+    `- 주력 실무: ${profile.primaryStack.join(' · ')}`,
     '',
     '## 경력',
     '',
@@ -29,7 +30,7 @@ const lines = [
 ]
 
 for (const project of featuredCaseStudies) {
-    lines.push(`### ${project.subtitle}`, '', project.period, '')
+    lines.push(`### ${project.subtitle}`, '', project.period, '', `사용 기술: ${project.stack.join(' · ')}`, '', `[상세 사례](${profile.portfolioUrl}work/${project.id})`, '')
     if (project.scope) lines.push(project.scope, '')
     lines.push(...project.resumeBullets.slice(0, 2).map(bullet => `- ${bullet}`))
     lines.push('')

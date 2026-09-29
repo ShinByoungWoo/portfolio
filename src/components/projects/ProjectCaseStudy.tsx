@@ -25,9 +25,10 @@ export default function ProjectCaseStudy({ project }: { project: CaseStudy }) {
                         <p className="text-[13px] font-black text-accent">
                             {project.subtitle}
                         </p>
-                        <h3 className="mt-3 max-w-[26ch] text-[28px] font-black leading-[1.35] tracking-[-0.035em] text-ink sm:text-4xl">
+                        <h1 className="mt-3 max-w-[26ch] text-[28px] font-black leading-[1.35] tracking-[-0.035em] text-ink sm:text-4xl">
                             {project.title}
-                        </h3>
+                        </h1>
+                        <p className="mt-4 text-sm font-bold text-ink/70">{project.stack.join(' · ')}</p>
                         <p className="mt-5 max-w-4xl text-base leading-8 text-ink/80">
                             {project.summary}
                         </p>
@@ -50,9 +51,9 @@ export default function ProjectCaseStudy({ project }: { project: CaseStudy }) {
                                     {String(index + 1).padStart(2, '0')}
                                 </span>
                                 <div>
-                                    <h4 className="max-w-4xl text-lg font-bold leading-8 tracking-[-0.02em] text-ink sm:text-xl">
+                                    <h2 className="max-w-4xl text-lg font-bold leading-8 tracking-[-0.02em] text-ink sm:text-xl">
                                         {decision.question}
-                                    </h4>
+                                    </h2>
                                     <div className="mt-6 grid gap-6 md:grid-cols-2 md:gap-10">
                                         <div>
                                             <p className="text-[13px] font-bold text-ink/70">

@@ -1,80 +1,30 @@
 import { Link } from 'react-router-dom'
-import { profile, proofPoints } from '../../data/portfolio'
+import { profile } from '../../data/portfolio'
 
 export default function Hero() {
     return (
-        <section id="hero" className="border-b border-ink/20 bg-paper px-5 pb-12 pt-28 sm:px-8 sm:pb-16 sm:pt-32">
+        <section id="hero" className="border-b border-ink/20 px-5 pb-9 pt-28 sm:px-8 sm:pb-10 sm:pt-32">
             <div className="mx-auto max-w-[1200px]">
-                <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-20">
+                <p data-reveal className="text-[11px] font-black uppercase tracking-[0.2em] text-accent">Frontend engineer · Seoul</p>
+                <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end lg:gap-16">
                     <div>
-                        <p data-reveal className="mb-7 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.22em] text-accent">
-                            <span className="h-2 w-2 bg-accent" aria-hidden="true" />
-                            Frontend engineer - Seoul
-                        </p>
-
-                        <h1 data-reveal data-reveal-delay="70" className="max-w-5xl text-[clamp(2.5rem,5.2vw,4.5rem)] font-black leading-[1.15] tracking-[-0.05em] text-ink">
-                            학습의 경험부터
-                            <span className="block text-accent">서비스 운영까지.</span>
-                        </h1>
+                        <h1 data-reveal className="text-[clamp(2.1rem,4.5vw,3.7rem)] font-black leading-tight tracking-[-0.05em]">신병우 <span className="text-accent">·</span> 프론트엔드 개발자</h1>
+                        <p data-reveal data-reveal-delay="70" className="mt-5 max-w-[42ch] text-xl font-bold leading-8 tracking-[-0.025em] sm:text-2xl sm:leading-9">Vue·Nuxt로 학습 서비스와<br className="hidden sm:block" /> 운영 도구를 개발해 왔습니다.</p>
+                        <p data-reveal data-reveal-delay="140" className="mt-3 max-w-2xl text-[15px] leading-7 text-ink/75">화면 간 상태 유지, 실시간 수업 동기화, 콘텐츠 등록 자동화를 구현했습니다.</p>
+                        <ul aria-label="주력 실무 기술" className="mt-5 flex flex-wrap gap-2">
+                            {profile.primaryStack.map(item => <li key={item} className="border border-ink/25 px-3 py-1 text-xs font-bold">{item}</li>)}
+                        </ul>
                     </div>
-
-                    <aside data-reveal data-reveal-delay="140" className="border-t-4 border-ink pt-6">
-                        <p className="text-[12px] font-black uppercase tracking-[0.18em] text-ink/45">
-                            Currently
-                        </p>
-                        <p className="mt-4 text-2xl font-black leading-tight tracking-[-0.03em] text-ink">
-                            {profile.company}
-                        </p>
-                        <p className="mt-1 text-[14px] font-bold text-accent">{profile.period}</p>
-                        <p className="mt-6 text-[16px] leading-7 text-ink/70">
-                            코딩·AI 교육 서비스의 프론트엔드를 개발하고 있습니다.
-                        </p>
+                    <aside data-reveal className="border-t-4 border-ink pt-5">
+                        <p className="text-xs font-bold text-ink/65">{profile.period}</p>
+                        <p className="mt-2 text-lg font-black">{profile.company}</p>
+                        <p className="mt-2 text-sm leading-6 text-ink/75">학생의 학습 콘텐츠부터 교사·운영자의 관리 화면까지 개발·운영</p>
+                        <div className="mt-5 flex flex-wrap gap-3">
+                            <Link to="/resume" className="focus-ring bg-ink px-5 py-3 text-sm font-bold text-paper transition-colors hover:bg-accent hover:text-ink">이력서 읽기 ↗</Link>
+                            <a href="#work" className="focus-ring border border-ink/25 px-4 py-3 text-sm font-bold transition-colors hover:border-accent">대표 작업 ↓</a>
+                        </div>
                     </aside>
                 </div>
-
-                <div className="mt-16 grid gap-10 border-t border-ink/20 pt-9 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-20">
-                    <div data-reveal data-reveal-delay="140" className="max-w-3xl space-y-4 text-base leading-8 text-ink/80 sm:text-lg">
-                        {profile.portfolioIntro.map(paragraph => (
-                            <p key={paragraph}>{paragraph}</p>
-                        ))}
-                    </div>
-
-                    <div data-reveal data-reveal-delay="210" className="flex flex-wrap items-start gap-x-6 gap-y-4 lg:flex-col lg:gap-3">
-                        <a
-                            href="#work"
-                            className="inline-flex min-h-12 items-center bg-ink px-5 text-[13px] font-black text-paper transition-colors hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-                        >
-                            선택한 작업 보기 ↓
-                        </a>
-                        <Link
-                            to="/resume"
-                            className="inline-flex min-h-12 items-center border-b-2 border-ink px-1 text-[13px] font-black text-ink transition-colors hover:border-accent hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-                        >
-                            전체 이력서 읽기 ↗
-                        </Link>
-                    </div>
-                </div>
-
-                <dl className="mt-16 grid border-y border-ink/20 sm:grid-cols-3">
-                    {proofPoints.map((point, index) => (
-                        <div
-                            data-reveal
-                            data-reveal-delay={index * 70}
-                            key={point.label}
-                            className={`py-6 sm:px-7 ${index > 0 ? 'border-t border-ink/20 sm:border-l sm:border-t-0' : ''}`}
-                        >
-                            <dt className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-                                <span className="text-3xl font-black tracking-[-0.04em] text-ink sm:text-4xl">
-                                    {point.value}
-                                </span>
-                                <span className="text-[12px] font-black uppercase tracking-[0.12em] text-accent">
-                                    {point.label}
-                                </span>
-                            </dt>
-                            <dd className="mt-3 max-w-sm text-[15px] leading-7 text-ink/75">{point.detail}</dd>
-                        </div>
-                    ))}
-                </dl>
             </div>
         </section>
     )
