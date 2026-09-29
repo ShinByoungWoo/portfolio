@@ -7,7 +7,7 @@ export default function Contact() {
             <div className="mx-auto max-w-[1440px]">
                 <p className="text-[11px] font-black uppercase tracking-[0.22em] text-ink/55">Contact</p>
                 <h2 className="mt-5 max-w-6xl text-[clamp(3rem,7.5vw,8rem)] font-black leading-[0.9] tracking-[-0.07em]">
-                    제품의 복잡한 경계를 함께 정리할 팀을 찾고 있습니다.
+                    다음 제품을 함께 만들고 싶습니다.
                 </h2>
 
                 <div className="mt-16 grid gap-10 border-t-4 border-ink pt-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-20">
